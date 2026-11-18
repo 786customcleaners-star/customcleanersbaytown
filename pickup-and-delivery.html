@@ -46,6 +46,7 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--tag);border-colo
 .hp{display:none}
 button.go{background:var(--ink);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;font-size:1.05rem;padding:.85rem 2rem;min-height:48px;cursor:pointer}
 button.go:hover{background:var(--ink2)}button.go[disabled]{opacity:.6;cursor:wait}
+button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.alt:hover{background:var(--steam)}
 #msg{margin:1rem 0 0;font-weight:600}.ok{color:#0a7a3a}.bad{color:#b3121c}
 @media(max-width:600px){.row{grid-template-columns:1fr}form{padding:1.1rem}.hero img{order:-1}}
 </style>
@@ -86,14 +87,15 @@ button.go:hover{background:var(--ink2)}button.go[disabled]{opacity:.6;cursor:wai
     <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Wednesday / Delivery Friday"><span>Pickup Wednesday / Delivery Friday</span></label>
     <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Thursday / Delivery Monday"><span>Pickup Thursday / Delivery Monday</span></label>
   </fieldset>
-  <button class="go" type="submit">Submit</button>
+  <button class="go" type="submit">Submit Form</button> <button class="go alt" type="reset">Reset Form</button>
   <p id="msg" role="status" aria-live="polite"></p>
  </form>
 </main>
 <footer><p>Copyright 2026 by Evrest, Inc</p></footer>
 <script>
 (function(){
- var f=document.getElementById('pf'),m=document.getElementById('msg'),b=f.querySelector('button.go');
+ var f=document.getElementById('pf'),m=document.getElementById('msg'),b=f.querySelector('button[type=submit]');
+ f.addEventListener('reset',function(){m.textContent='';});
  f.addEventListener('submit',function(e){
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}
