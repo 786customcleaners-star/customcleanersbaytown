@@ -91,12 +91,23 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
   <li><b>Return</b>We call you when it is ready for pickup or delivery.</li>
  </ol>
 
- <h2 class="s">Packages</h2>
+ <h2 class="s">Packages and prices</h2>
  <div class="pk">
-  <div class="box"><h3>Cleaning</h3><p class="pr">Call for pricing</p><ul><li>Inspection and spot treatment</li><li>Cleaning per care label</li><li>Pressed and ready to wear</li></ul></div>
-  <div class="box"><h3>Cleaning and Preservation</h3><p class="pr">Call for pricing</p><ul><li>Everything in Cleaning</li><li>Acid-free tissue and box</li><li>Long-term storage-ready packaging</li></ul></div>
+  <div class="box"><h3>Clean Only</h3><p class="pr">$260 &middot; ready in 2&ndash;3 weeks</p><ul><li>Inspection and spot treatment</li><li>Cleaning per care label</li><li>Add preservation for +$100</li></ul></div>
+  <div class="box"><h3>Traditional Cleaning + Preservation</h3><p class="pr">$360 &middot; 6&ndash;8 weeks</p><ul><li>Everything in Clean Only</li><li>Acid-free tissue and preservation box</li><li>$2,000 declared value included</li></ul></div>
+  <div class="box"><h3>Celebrity Cleaning + Preservation</h3><p class="pr">$435 &middot; 6&ndash;8 weeks</p><ul><li>Premium preservation for higher-value gowns</li><li>$3,000 declared value included</li></ul></div>
+  <div class="box"><h3>Restoration</h3><p class="pr">$460 &middot; 6&ndash;8 weeks</p><ul><li>For older or yellowed gowns</li><li>Cleaning, restoration and preservation</li><li>$2,000 declared value included</li></ul></div>
+  <div class="box"><h3>Flower Girl / Christening</h3><p class="pr">$175 &middot; 6&ndash;8 weeks</p><ul><li>Cleaning and preservation for children's gowns</li><li>$2,000 declared value included</li></ul></div>
  </div>
- <p class="note">All gowns carry a declared value of $2,000 unless a higher value is stated; additional declared value may be purchased. Gowns more than 20 years old need restoration at an additional charge.</p>
+ <h3 class="s" style="font-size:1.2rem;margin-top:1.6rem">Add-ons</h3>
+ <ul class="note" style="font-size:1rem;line-height:1.8">
+  <li><b>Higher declared value:</b> +$50 per extra $1,000 of coverage</li>
+  <li><b>Extra items, $50 each:</b> silk flowers, shoes, slip, accessories box, gown overlay, detachable skirt</li>
+  <li><b>Veil and other accessories:</b> no charge</li>
+  <li><b>Photo documentation:</b> $50</li>
+  <li><b>Restoration with preservation:</b> +$75 to +$100 depending on package</li>
+ </ul>
+ <p class="note">Prices are before sales tax. Gowns more than 20 years old need restoration. Final price is confirmed when we inspect your gown.</p>
 
  <h2 class="s">Questions</h2>
  <details><summary>Will every stain come out?</summary><p>Not always. Some stains cannot be removed completely without damaging the fabric. We tell you what to expect when we inspect the gown.</p></details>
@@ -118,9 +129,19 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
    <input type="email" name="Email" autocomplete="email" required aria-label="Email">
   </fieldset>
   <fieldset><legend>Service wanted <span class="req" aria-hidden="true">*</span></legend>
-   <label class="opt"><input type="radio" name="Service" value="Cleaning" required><span>Cleaning</span></label>
-   <label class="opt"><input type="radio" name="Service" value="Cleaning and Preservation"><span>Cleaning and Preservation</span></label>
-   <label class="opt"><input type="radio" name="Service" value="Not sure yet"><span>Not sure yet</span></label>
+   <select name="Service" required aria-label="Service wanted"><option value="">Choose a service</option><option>Clean Only - $260</option><option>Clean Only + Preservation - $360</option><option>Traditional Cleaning + Preservation - $360</option><option>Celebrity Cleaning + Preservation - $435</option><option>Restoration - $460</option><option>Flower Girl / Christening - $175</option><option>Not sure yet</option></select>
+  </fieldset>
+  <fieldset><legend>Declared value</legend>
+   <select name="Declared Value" aria-label="Declared value"><option>Included with package</option><option>+1,000 higher (+$50)</option><option>+2,000 higher (+$100)</option><option>+3,000 higher (+$150)</option></select>
+  </fieldset>
+  <fieldset><legend>Add-ons</legend>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Silk flowers (+$50)"><span>Silk flowers (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Shoes (+$50)"><span>Shoes (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Slip (+$50)"><span>Slip (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Accessories box (+$50)"><span>Accessories box (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Gown overlay (+$50)"><span>Gown overlay (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Detachable skirt (+$50)"><span>Detachable skirt (+$50)</span></label>
+   <label class="opt"><input type="checkbox" name="Add-ons" value="Photo documentation (+$50)"><span>Photo documentation (+$50)</span></label>
   </fieldset>
   <fieldset><legend>How will you get it to us? <span class="req" aria-hidden="true">*</span></legend>
    <label class="opt"><input type="radio" name="Drop-off" value="I will bring it in" required><span>I will bring it in</span></label>
@@ -140,7 +161,7 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
  f.addEventListener('submit',function(e){
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}
-  var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=v;});
+  var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=(k in d)?d[k]+', '+v:v;});
   d._subject='Wedding Gown Request - '+d['First Name']+' '+d['Last Name'];
   d._replyto=d['Email'];d._template='table';d._captcha='false';
   b.disabled=true;m.className='';m.textContent='Sending...';
