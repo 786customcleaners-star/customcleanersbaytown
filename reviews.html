@@ -65,7 +65,7 @@ button.go:hover{background:var(--ink2)}button.go[disabled]{opacity:.6;cursor:wai
 textarea{min-height:130px;resize:vertical}
 .links{display:flex;gap:1.2rem;justify-content:center;align-items:center;flex-wrap:wrap;margin:1rem 0 1.6rem}
 .links a{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.7rem 1.4rem;border-radius:10px;font-weight:700;text-decoration:none;color:#fff;font-size:1.05rem}
-.links a.g{background:#fff;color:#1f2745;border:2px solid var(--line)}.links a.y{background:#b3121c}
+.links a.g{background:#fff;color:#1f2745;border:2px solid var(--ink);min-width:220px}.links a.g:hover{background:var(--steam)}.links a.y{background:#b3121c}
 .links a.g b:nth-child(1){color:#4285f4}.links a.g b:nth-child(2){color:#ea4335}.links a.g b:nth-child(3){color:#fbbc05}.links a.g b:nth-child(4){color:#4285f4}.links a.g b:nth-child(5){color:#34a853}.links a.g b:nth-child(6){color:#ea4335}
 .loc h2{font-family:var(--serif);color:var(--ink);font-size:1.4rem;margin:0}
 .loc+.loc{border-top:1px solid var(--line);padding-top:1.4rem;margin-top:.4rem}
@@ -92,30 +92,14 @@ textarea{min-height:130px;resize:vertical}
   </div>
  </section>
 
- <section id="s2" hidden>
-  <form id="f2" novalidate>
-   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
-   <h2 class="q">We're glad you were satisfied!</h2>
-   <div class="row"><div><label class="l" for="afn">First Name *</label><input id="afn" type="text" name="First Name" autocomplete="given-name" required></div><div><label class="l" for="aln">Last Name *</label><input id="aln" type="text" name="Last Name" autocomplete="family-name" required></div></div>
-   <div class="row"><div><label class="l" for="aph">Phone *</label><input id="aph" type="tel" name="Phone" autocomplete="tel" inputmode="tel" required></div><div><label class="l" for="aem">Email *</label><input id="aem" type="email" name="Email" autocomplete="email" required></div></div>
-   <div class="stars"><span class="lab">Rate our cleaning</span><span class="st" role="radiogroup" aria-label="Rate our cleaning"><input type="radio" id="c25" name="Rate our cleaning" value="5"><label for="c25" title="5 stars">&#9733;</label><input type="radio" id="c24" name="Rate our cleaning" value="4"><label for="c24" title="4 stars">&#9733;</label><input type="radio" id="c23" name="Rate our cleaning" value="3"><label for="c23" title="3 stars">&#9733;</label><input type="radio" id="c22" name="Rate our cleaning" value="2"><label for="c22" title="2 stars">&#9733;</label><input type="radio" id="c21" name="Rate our cleaning" value="1"><label for="c21" title="1 star">&#9733;</label></span></div><div class="stars"><span class="lab">Rate our pressing</span><span class="st" role="radiogroup" aria-label="Rate our pressing"><input type="radio" id="p25" name="Rate our pressing" value="5"><label for="p25" title="5 stars">&#9733;</label><input type="radio" id="p24" name="Rate our pressing" value="4"><label for="p24" title="4 stars">&#9733;</label><input type="radio" id="p23" name="Rate our pressing" value="3"><label for="p23" title="3 stars">&#9733;</label><input type="radio" id="p22" name="Rate our pressing" value="2"><label for="p22" title="2 stars">&#9733;</label><input type="radio" id="p21" name="Rate our pressing" value="1"><label for="p21" title="1 star">&#9733;</label></span></div><div class="stars"><span class="lab">Rate our customer service</span><span class="st" role="radiogroup" aria-label="Rate our customer service"><input type="radio" id="s2_5" name="Rate our customer service" value="5"><label for="s2_5" title="5 stars">&#9733;</label><input type="radio" id="s2_4" name="Rate our customer service" value="4"><label for="s2_4" title="4 stars">&#9733;</label><input type="radio" id="s2_3" name="Rate our customer service" value="3"><label for="s2_3" title="3 stars">&#9733;</label><input type="radio" id="s2_2" name="Rate our customer service" value="2"><label for="s2_2" title="2 stars">&#9733;</label><input type="radio" id="s2_1" name="Rate our customer service" value="1"><label for="s2_1" title="1 star">&#9733;</label></span></div>
-   <fieldset><legend>Would you recommend us to family and friends ?</legend><div class="inline"><label class="opt"><input type="radio" name="Would you recommend us to family and friends ?" value="Yes"><span>Yes</span></label><label class="opt"><input type="radio" name="Would you recommend us to family and friends ?" value="No"><span>No</span></label><label class="opt"><input type="radio" name="Would you recommend us to family and friends ?" value="Maybe"><span>Maybe</span></label></div></fieldset>
-   <fieldset><legend>Service Location *</legend><div class="inline">
-    <label class="opt"><input type="radio" name="Service Location" value="4517 Garth Rd" required><span>4517 Garth Rd</span></label>
-    <label class="opt"><input type="radio" name="Service Location" value="7123 N Highway 146"><span>7123 N Highway 146</span></label></div></fieldset>
-   <button class="go" type="submit">Rate us 5 Star</button>
-   <p class="msg" role="status" aria-live="polite"></p>
-  </form>
+ <section id="s2" class="center" hidden>
+  <h2 class="q">We're glad you were satisfied!</h2>
+  <p class="sm">Which location did you visit? We'll take you to our Google reviews page for that store.</p>
+  <div class="links">
+   <a class="g" href="https://search.google.com/local/writereview?placeid=ChIJYzcD0qBeP4YR8fyGz-R6vrQ" rel="noopener">4517 Garth Rd</a>
+   <a class="g" href="https://search.google.com/local/writereview?placeid=ChIJMcKWLKdeP4YRtRPzGszf0b4" rel="noopener">7123 N Highway 146</a>
+  </div>
   <button class="back" type="button" data-go="s1">&larr; Back</button>
- </section>
-
- <section id="s3" class="center" hidden>
-  <h2 class="q">Please take a few minutes to write your review on Google or Yelp.</h2>
-  <p class="sm">Select your location</p>
-  <div class="loc"><h2>4517 Garth Rd review</h2>
-   <div class="links"><a class="g" href="https://search.google.com/local/writereview?placeid=ChIJYzcD0qBeP4YR8fyGz-R6vrQ" target="_blank" rel="noopener">Review us on <span><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span></a><a class="y" href="https://www.yelp.com/search?find_desc=Custom+Cleaners&find_loc=Baytown%2C+TX" target="_blank" rel="noopener">Review us on Yelp</a></div></div>
-  <div class="loc"><h2>7123 N Highway 146 review</h2>
-   <div class="links"><a class="g" href="https://search.google.com/local/writereview?placeid=ChIJMcKWLKdeP4YRtRPzGszf0b4" target="_blank" rel="noopener">Review us on <span><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span></a><a class="y" href="https://www.yelp.com/search?find_desc=Custom+Cleaners&find_loc=Baytown%2C+TX" target="_blank" rel="noopener">Review us on Yelp</a></div></div>
  </section>
 
  <section id="s4" hidden>
@@ -139,7 +123,7 @@ textarea{min-height:130px;resize:vertical}
 <footer><p>Copyright 2026 by Evrest, Inc</p></footer>
 <script>
 (function(){
- function show(id){['s1','s2','s3','s4'].forEach(function(s){document.getElementById(s).hidden=(s!==id);});window.scrollTo(0,0);}
+ function show(id){['s1','s2','s4'].forEach(function(s){document.getElementById(s).hidden=(s!==id);});window.scrollTo(0,0);}
  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-go'));});});
  function wire(id,subject,okText,after){
   var f=document.getElementById(id),m=f.querySelector('.msg'),b=f.querySelector('button.go');
@@ -161,8 +145,7 @@ textarea{min-height:130px;resize:vertical}
    .then(function(){b.disabled=false;});
   });
  }
- wire('f2','Customer Review (Satisfied)','',function(){show('s3');});
- wire('f4','Customer Complaint','Thanks for your feedback!');
+  wire('f4','Customer Complaint','Thanks for your feedback!');
 })();
 </script>
 </body>
