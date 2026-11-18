@@ -117,13 +117,6 @@ textarea{min-height:130px;resize:vertical}
    <button class="go" type="submit">Send Feedback</button>
    <p class="msg" role="status" aria-live="polite"></p>
   </form>
-  <div id="pub" class="center" hidden>
-   <p class="sm">Thank you for telling us. If you would also like to share your experience publicly, you can leave a Google review for the store you visited.</p>
-   <div class="links">
-    <a class="g" href="https://search.google.com/local/writereview?placeid=ChIJYzcD0qBeP4YR8fyGz-R6vrQ" rel="noopener">Review 4517 Garth Rd on Google</a>
-    <a class="g" href="https://search.google.com/local/writereview?placeid=ChIJMcKWLKdeP4YRtRPzGszf0b4" rel="noopener">Review 7123 N Highway 146 on Google</a>
-   </div>
-  </div>
   <button class="back" type="button" data-go="s1">&larr; Back</button>
  </section>
 </main>
@@ -152,7 +145,7 @@ textarea{min-height:130px;resize:vertical}
    .then(function(){b.disabled=false;});
   });
  }
-  wire('f4','Customer Complaint','Thanks for your feedback!',function(){var m=document.querySelector('#f4 .msg');m.className='msg ok';m.textContent='Thanks for your feedback! We will look into it.';document.getElementById('pub').hidden=false;});
+  wire('f4','Customer Complaint','Thanks for your feedback! We will look into it.');
 })();
 </script>
 </body>
