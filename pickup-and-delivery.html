@@ -66,6 +66,9 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
  </div>
  <form id="pf" action="https://formsubmit.co/eicctexas@gmail.com" method="POST" novalidate>
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+  <fieldset><legend>Organization Name</legend>
+   <input type="text" name="Organization Name" autocomplete="organization" aria-label="Organization name">
+  </fieldset>
   <fieldset><legend>Name</legend>
    <div class="row"><input type="text" name="First Name" placeholder="First" autocomplete="given-name" required aria-label="First name"><input type="text" name="Last Name" placeholder="Last" autocomplete="family-name" required aria-label="Last name"></div>
   </fieldset>
@@ -81,11 +84,8 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
    <div class="row"><input type="text" name="City" placeholder="City" autocomplete="address-level2" required aria-label="City"><input type="text" name="Region" placeholder="Region" autocomplete="address-level1" aria-label="Region"></div>
    <div class="row"><input type="text" name="Postal / Zip Code" placeholder="Postal / Zip Code" autocomplete="postal-code" inputmode="numeric" required aria-label="Postal or zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
   </fieldset>
-  <fieldset><legend>Pickup &amp; Delivery Day</legend>
-    <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Monday / Delivery Wednesday" required><span>Pickup Monday / Delivery Wednesday</span></label>
-    <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Tuesday / Delivery Thursday"><span>Pickup Tuesday / Delivery Thursday</span></label>
-    <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Wednesday / Delivery Friday"><span>Pickup Wednesday / Delivery Friday</span></label>
-    <label class="opt"><input type="radio" name="Pickup and Delivery Day" value="Pickup Thursday / Delivery Monday"><span>Pickup Thursday / Delivery Monday</span></label>
+  <fieldset><legend>Purchase Order Number</legend>
+   <input type="text" name="Purchase Order Number" autocomplete="off" aria-label="Purchase order number">
   </fieldset>
   <button class="go" type="submit">Submit Form</button> <button class="go alt" type="reset">Reset Form</button>
   <p id="msg" role="status" aria-live="polite"></p>
@@ -100,7 +100,7 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}
   var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=v;});
-  d._subject='Pickup and Delivery Request - '+d['First Name']+' '+d['Last Name'];
+  d._subject='Pickup and Delivery Request - '+(d['Organization Name']?d['Organization Name']+' - ':'')+d['First Name']+' '+d['Last Name'];
   d._replyto=d['Email'];d._template='table';d._captcha='false';
   b.disabled=true;m.className='';m.textContent='Sending...';
   fetch('https://formsubmit.co/ajax/eicctexas@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
