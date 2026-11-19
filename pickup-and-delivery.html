@@ -68,6 +68,9 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
   <fieldset><legend>Organization Name</legend>
    <input type="text" name="Organization Name" autocomplete="organization" aria-label="Organization name">
   </fieldset>
+  <fieldset><legend>Purchase Order Number</legend>
+   <input type="text" name="Purchase Order Number" autocomplete="off" aria-label="Purchase order number">
+  </fieldset>
   <fieldset><legend>Name</legend>
    <div class="row"><input type="text" name="First Name" placeholder="First" autocomplete="given-name" required aria-label="First name"><input type="text" name="Last Name" placeholder="Last" autocomplete="family-name" required aria-label="Last name"></div>
   </fieldset>
@@ -82,9 +85,6 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
    <div class="full"><input type="text" name="Street Address Line 2" placeholder="Street Address Line 2" autocomplete="address-line2" aria-label="Street address line 2"></div>
    <div class="row"><input type="text" name="City" placeholder="City" autocomplete="address-level2" required aria-label="City"><input type="text" name="Region" placeholder="Region" autocomplete="address-level1" aria-label="Region"></div>
    <div class="row"><input type="text" name="Postal / Zip Code" placeholder="Postal / Zip Code" autocomplete="postal-code" inputmode="numeric" required aria-label="Postal or zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
-  </fieldset>
-  <fieldset><legend>Purchase Order Number</legend>
-   <input type="text" name="Purchase Order Number" autocomplete="off" aria-label="Purchase order number">
   </fieldset>
   <button class="go" type="submit">Submit Form</button> <button class="go alt" type="reset">Reset Form</button>
   <p id="msg" role="status" aria-live="polite"></p>
