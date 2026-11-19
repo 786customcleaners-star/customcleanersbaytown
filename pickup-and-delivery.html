@@ -95,7 +95,7 @@ button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.a
 <script>
 (function(){
  var f=document.getElementById('pf'),m=document.getElementById('msg'),b=f.querySelector('button[type=submit]');
- f.addEventListener('reset',function(){m.textContent='';});
+ var rb=f.querySelector('button[type=reset]');if(rb){rb.addEventListener('click',function(){m.textContent='';});}
  f.addEventListener('submit',function(e){
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}
