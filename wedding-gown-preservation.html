@@ -72,6 +72,13 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 .pk .box{position:relative}.tagp{display:inline-block;background:var(--steam);color:var(--ink);font-size:.78rem;font-weight:700;padding:.15rem .6rem;border-radius:20px;margin-bottom:.4rem}
 .pk .for{margin:0 0 .6rem;font-size:.95rem;color:#44507a}.pickbtn{margin-top:.9rem;background:var(--ink);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;min-height:46px;padding:.6rem 1.2rem;cursor:pointer;width:100%}.pickbtn:hover{background:var(--ink2)}
 .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}.vid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.hero2{display:flex;gap:1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap}.hcol{flex:1 1 320px;min-width:0}.himg{flex:0 1 300px;width:min(300px,100%);height:auto;border-radius:12px;background:#fff}
+.dealer{display:block;width:min(260px,70%);height:auto;margin:0 0 1rem}
+.pk .box{display:flex;flex-direction:column}.pk .box ul{flex:1 0 auto}.pimg{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;margin:.8rem 0 0;background:#fff;border:1px solid var(--line)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:1.5rem;align-items:center}.rimg{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.chk{margin:0 0 1rem;padding-left:1.2rem}.chk li{margin:0 0 .4rem}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}.gal img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+@media(max-width:700px){.two{grid-template-columns:1fr}.himg{order:-1;margin:0 auto}}
 </style>
 </head>
 <body>
@@ -83,27 +90,30 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 </header>
 <main>
  <section class="hero2">
-  <p class="eyebrow">Authorized dealer of Wedding Gown Preservation Co. &middot; Since 1913</p>
-  <h1>Your Wedding Dress, Preserved for the Future</h1>
-  <p>Professional cleaning and preservation by Wedding Gown Preservation Co. Order here, and we handle the hand-off for you.</p>
-  <ul class="bul">
-   <li>Removes visible and hidden wedding-day stains</li>
-   <li>100 Year Certificate of Guarantee</li>
-   <li>Prepaid cleaning, preservation and shipping</li>
-   <li>Returned within 4&ndash;14 weeks of receipt</li>
-  </ul>
-  <a class="btn" href="#packages">Preserve my dress</a> <a class="btn alt2" href="#why">Why preserve?</a>
+  <div class="hcol">
+   <img class="dealer" src="/img/wgp-authorized-dealer.png" alt="Wedding Gown Preservation Co. Authorized Dealer" width="260" height="87">
+   <h1>Your Wedding Dress, Preserved for the Future</h1>
+   <p>Professional cleaning and preservation by Wedding Gown Preservation Co. Order here, and we handle the hand-off for you.</p>
+   <ul class="bul">
+    <li>Removes visible and hidden wedding-day stains</li>
+    <li>100 Year Certificate of Guarantee</li>
+    <li>Prepaid cleaning, preservation and shipping</li>
+    <li>Returned within 4&ndash;14 weeks of receipt</li>
+   </ul>
+   <a class="btn" href="#packages">Preserve my dress</a> <a class="btn alt2" href="#why">Why preserve?</a>
+  </div>
+  <img class="himg" src="/img/bride-with-kit.jpg" alt="Smiling woman holding a Wedding Gown Preservation Co. gown box" width="420" height="525">
  </section>
 
  <h2 class="s" id="packages">Choose your kit</h2>
  <div class="pk">
-  <div class="box"><span class="tagp">Most popular</span><h3>Traditional</h3><p class="pr">$360</p><p class="for">For gowns under 20 years old, originally under $2,000.</p><ul><li>Cleaning and preservation</li><li>$2,000 declared value included</li><li>100 Year Certificate of Guarantee</li></ul><button type="button" class="pickbtn" data-pkg="Traditional">Order this kit</button></div>
-  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$435</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 declared value included</li><li>100 Year Certificate of Guarantee</li></ul><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
-  <div class="box"><span class="tagp">Wear it again</span><h3>Clean Only</h3><p class="pr">$260</p><p class="for">Cleaned and returned ready to wear. Add preservation for +$100.</p><ul><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li></ul><button type="button" class="pickbtn" data-pkg="Clean Only - $260">Order this kit</button></div>
-  <div class="box"><span class="tagp">For older gowns</span><h3>Restoration</h3><p class="pr">$460</p><p class="for">For gowns 20 years or older, or with yellowing.</p><ul><li>Cleaning, restoration and preservation</li><li>$2,000 declared value included</li></ul><button type="button" class="pickbtn" data-pkg="Restoration">Order this kit</button></div>
-  <div class="box"><span class="tagp">Keepsake</span><h3>Flower Girl / Christening</h3><p class="pr">$175</p><p class="for">For children's gowns.</p><ul><li>Cleaning and preservation</li><li>$2,000 declared value included</li></ul><button type="button" class="pickbtn" data-pkg="Flower Girl">Order this kit</button></div>
+  <div class="box"><span class="tagp">Most popular</span><h3>Traditional</h3><p class="pr">$360</p><p class="for">For gowns under 20 years old, originally under $2,000.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/traditional-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Traditional">Order this kit</button></div>
+  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$435</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/celebrity-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
+  <div class="box"><span class="tagp">Wear it again</span><h3>Clean Only</h3><p class="pr">$260</p><p class="for">Cleaned and returned ready to wear. Add preservation for +$100.</p><ul><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li></ul><img class="pimg" src="/img/kit-front.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Clean Only - $260">Order this kit</button></div>
+  <div class="box"><span class="tagp">For older gowns</span><h3>Restoration</h3><p class="pr">$460</p><p class="for">For gowns 20 years or older, or with yellowing.</p><ul><li>Cleaning, restoration and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/preserved-gown.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Restoration">Order this kit</button></div>
+  <div class="box"><span class="tagp">Keepsake</span><h3>Flower Girl / Christening</h3><p class="pr">$175</p><p class="for">For children's gowns.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/christening-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Flower Girl">Order this kit</button></div>
  </div>
- <p class="note">Prices are before sales tax. Add-ons such as extra declared value, shoes, slip and photo documentation are in the order form.</p>
+ <p class="note">Prices are before sales tax. Add-ons such as extra insured value, shoes, slip and photo documentation are in the order form.</p>
 
  <h2 class="s" id="why">Don't let your dress turn into a yellowed memory</h2>
  <p>Stains you can't see, like perfume, deodorant, makeup, food and dance-floor dirt, can set in after the wedding and slowly turn a gown yellow. Having it professionally cleaned and preserved soon after the day is the best way to keep it looking the way you remember.</p>
@@ -116,6 +126,28 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   <li><b>Cleaned and preserved</b>Your gown is cleaned and preserved at their facility.</li>
   <li><b>Returned to you</b>Back to you in 4&ndash;14 weeks from the day they receive it.</li>
  </ol>
+
+ <h2 class="s">What is in your kit</h2>
+ <div class="two">
+  <img class="rimg" src="/img/kit-back.jpg" alt="Back of the kit showing the order form, stain stickers, gown bag, shipping label and instructions" loading="lazy" width="520" height="650">
+  <div>
+   <p>Every kit comes with what is needed to send your gown safely:</p>
+   <ul class="chk">
+    <li>Order form and instructions</li>
+    <li>Stain stickers for areas that need special attention</li>
+    <li>Gown bag and a sturdy shipping box</li>
+    <li>Prepaid FedEx shipping label</li>
+    <li>Prepaid cleaning, preservation and shipping, with a 100 Year Certificate of Guarantee</li>
+   </ul>
+   <p class="note">We pack your gown and ship it for you, with the same insured values as the kit.</p>
+  </div>
+ </div>
+ <h2 class="s">Preserved gowns</h2>
+ <div class="gal">
+  <img src="/img/preserved-gowns.jpg" alt="Several preserved gowns in Wedding Gown Preservation Co. boxes" loading="lazy" width="360" height="480">
+  <img src="/img/preserved-gown.jpg" alt="A preserved gown beside its box" loading="lazy" width="360" height="480">
+  <img src="/img/christening-child.jpg" alt="A child holding a preserved christening gown box" loading="lazy" width="360" height="480">
+ </div>
 
  <h2 class="s">See the kit and the process</h2>
  <div class="vids">
