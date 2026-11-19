@@ -66,7 +66,13 @@ details{background:#fff;border:1px solid var(--line);border-radius:10px;margin:0
 summary{cursor:pointer;font-weight:600;color:var(--ink);padding:.7rem 0;min-height:44px}
 details p{margin:0 0 .9rem}
 textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95rem;color:#44507a}
-.tot{font-size:1.25rem;margin:1rem 0}.tot b{color:var(--ink)}.done{background:#fff;border:1px solid var(--line);border-left:6px solid #0a7a3a;border-radius:12px;padding:1.4rem 1.6rem}.done h3{margin:0 0 .6rem;font-family:var(--serif);color:var(--ink)}</style>
+.tot{font-size:1.25rem;margin:1rem 0}.tot b{color:var(--ink)}.done{background:#fff;border:1px solid var(--line);border-left:6px solid #0a7a3a;border-radius:12px;padding:1.4rem 1.6rem}.done h3{margin:0 0 .6rem;font-family:var(--serif);color:var(--ink)}.eyebrow{font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;opacity:.9;margin:0 0 .6rem!important;font-family:var(--sans)!important;font-style:normal!important}
+.bul{list-style:none;margin:0 0 1.3rem;padding:0;display:grid;gap:.35rem}.bul li:before{content:"\2713\00a0";color:var(--tag);font-weight:700}
+a.alt2{background:transparent;color:#fff;border:2px solid #fff}
+.pk .box{position:relative}.tagp{display:inline-block;background:var(--steam);color:var(--ink);font-size:.78rem;font-weight:700;padding:.15rem .6rem;border-radius:20px;margin-bottom:.4rem}
+.pk .for{margin:0 0 .6rem;font-size:.95rem;color:#44507a}.pickbtn{margin-top:.9rem;background:var(--ink);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;min-height:46px;padding:.6rem 1.2rem;cursor:pointer;width:100%}.pickbtn:hover{background:var(--ink2)}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}.vid{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
 </head>
 <body>
 <header>
@@ -77,46 +83,56 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
 </header>
 <main>
  <section class="hero2">
-  <h1>Wedding Gown Cleaning and Preservation</h1>
-  <p>Your dress, cleaned with care and sealed for the years ahead.</p>
-  <a class="btn" href="#request">Order your kit</a>
+  <p class="eyebrow">Authorized dealer of Wedding Gown Preservation Co. &middot; Since 1913</p>
+  <h1>Your Wedding Dress, Preserved for the Future</h1>
+  <p>Professional cleaning and preservation by Wedding Gown Preservation Co. Order here, and we handle the hand-off for you.</p>
+  <ul class="bul">
+   <li>Removes visible and hidden wedding-day stains</li>
+   <li>100 Year Certificate of Guarantee</li>
+   <li>Prepaid cleaning, preservation and shipping</li>
+   <li>Returned within 4&ndash;14 weeks of receipt</li>
+  </ul>
+  <a class="btn" href="#packages">Preserve my dress</a> <a class="btn alt2" href="#why">Why preserve?</a>
  </section>
+
+ <h2 class="s" id="packages">Choose your kit</h2>
+ <div class="pk">
+  <div class="box"><span class="tagp">Most popular</span><h3>Traditional</h3><p class="pr">$360</p><p class="for">For gowns under 20 years old, originally under $2,000.</p><ul><li>Cleaning and preservation</li><li>$2,000 declared value included</li><li>100 Year Certificate of Guarantee</li></ul><button type="button" class="pickbtn" data-pkg="Traditional">Order this kit</button></div>
+  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$435</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 declared value included</li><li>100 Year Certificate of Guarantee</li></ul><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
+  <div class="box"><span class="tagp">Wear it again</span><h3>Clean Only</h3><p class="pr">$260</p><p class="for">Cleaned and returned ready to wear. Add preservation for +$100.</p><ul><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li></ul><button type="button" class="pickbtn" data-pkg="Clean Only - $260">Order this kit</button></div>
+  <div class="box"><span class="tagp">For older gowns</span><h3>Restoration</h3><p class="pr">$460</p><p class="for">For gowns 20 years or older, or with yellowing.</p><ul><li>Cleaning, restoration and preservation</li><li>$2,000 declared value included</li></ul><button type="button" class="pickbtn" data-pkg="Restoration">Order this kit</button></div>
+  <div class="box"><span class="tagp">Keepsake</span><h3>Flower Girl / Christening</h3><p class="pr">$175</p><p class="for">For children's gowns.</p><ul><li>Cleaning and preservation</li><li>$2,000 declared value included</li></ul><button type="button" class="pickbtn" data-pkg="Flower Girl">Order this kit</button></div>
+ </div>
+ <p class="note">Prices are before sales tax. Add-ons such as extra declared value, shoes, slip and photo documentation are in the order form.</p>
+
+ <h2 class="s" id="why">Don't let your dress turn into a yellowed memory</h2>
+ <p>Stains you can't see, like perfume, deodorant, makeup, food and dance-floor dirt, can set in after the wedding and slowly turn a gown yellow. Having it professionally cleaned and preserved soon after the day is the best way to keep it looking the way you remember.</p>
 
  <h2 class="s">How it works</h2>
  <ol class="steps">
-  <li><b>Order online</b>Choose your package and add-ons, then pay securely at checkout.</li>
-  <li><b>We ship your kit</b>Your preservation kit and instructions are mailed to you.</li>
-  <li><b>Pack and send</b>Follow the instructions, pack your gown in the kit and ship it back to us.</li>
-  <li><b>Cleaning and preservation</b>We inspect, clean and preserve your gown with care.</li>
-  <li><b>Returned to you</b>Your preserved gown is shipped back, ready to keep.</li>
+  <li><b>Order your kit</b>Pick a package and pay securely online.</li>
+  <li><b>Bring us your gown</b>Drop it at either Baytown location, or ask for free pickup.</li>
+  <li><b>We pack and ship it</b>We prepare your gown in its kit and send it to Wedding Gown Preservation Co.</li>
+  <li><b>Cleaned and preserved</b>Your gown is cleaned and preserved at their facility.</li>
+  <li><b>Returned to you</b>Back to you in 4&ndash;14 weeks from the day they receive it.</li>
  </ol>
 
- <h2 class="s">Packages and prices</h2>
- <div class="pk">
-  <div class="box"><h3>Clean Only</h3><p class="pr">$260 &middot; ready in 2&ndash;3 weeks</p><ul><li>Inspection and spot treatment</li><li>Cleaning per care label</li><li>Add preservation for +$100</li></ul></div>
-  <div class="box"><h3>Traditional Cleaning + Preservation</h3><p class="pr">$360 &middot; 6&ndash;8 weeks</p><ul><li>Everything in Clean Only</li><li>Acid-free tissue and preservation box</li><li>$2,000 declared value included</li></ul></div>
-  <div class="box"><h3>Celebrity Cleaning + Preservation</h3><p class="pr">$435 &middot; 6&ndash;8 weeks</p><ul><li>Premium preservation for higher-value gowns</li><li>$3,000 declared value included</li></ul></div>
-  <div class="box"><h3>Restoration</h3><p class="pr">$460 &middot; 6&ndash;8 weeks</p><ul><li>For older or yellowed gowns</li><li>Cleaning, restoration and preservation</li><li>$2,000 declared value included</li></ul></div>
-  <div class="box"><h3>Flower Girl / Christening</h3><p class="pr">$175 &middot; 6&ndash;8 weeks</p><ul><li>Cleaning and preservation for children's gowns</li><li>$2,000 declared value included</li></ul></div>
+ <h2 class="s">See the kit and the process</h2>
+ <div class="vids">
+  <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/dJygj6kKvVk" title="Preservation kit video" loading="lazy" allowfullscreen></iframe></div>
+  <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/mdEotsrmi8U" title="Preservation process video" loading="lazy" allowfullscreen></iframe></div>
  </div>
- <h3 class="s" style="font-size:1.2rem;margin-top:1.6rem">Add-ons</h3>
- <ul class="note" style="font-size:1rem;line-height:1.8">
-  <li><b>Higher declared value:</b> +$50 per extra $1,000 of coverage</li>
-  <li><b>Extra items, $50 each:</b> silk flowers, shoes, slip, accessories box, gown overlay, detachable skirt</li>
-  <li><b>Veil and other accessories:</b> no charge</li>
-  <li><b>Photo documentation:</b> $50</li>
-  <li><b>Restoration with preservation:</b> +$75 to +$100 depending on package</li>
- </ul>
- <p class="note">Prices are before sales tax. Gowns more than 20 years old need restoration. Final price is confirmed when we inspect your gown.</p>
 
  <h2 class="s">Questions</h2>
- <details><summary>Will every stain come out?</summary><p>Not always. Some stains cannot be removed completely without damaging the fabric. We tell you what to expect when we inspect the gown.</p></details>
+ <details><summary>Will every stain come out?</summary><p>Not always. Some stains cannot be removed completely without damaging the fabric. We note the condition of your gown when you bring it in.</p></details>
  <details><summary>Can beads and sequins be affected?</summary><p>Appliques, beads and decorative items may come off, and some lace, embroidery, beads and sequins can lose color or yellow over time, even with proper care.</p></details>
- <details><summary>How soon should I bring my gown in?</summary><p>As soon as you can after the wedding. Fresh stains, including ones you cannot see, are easier to treat.</p></details>
+ <details><summary>How soon should I bring my gown in?</summary><p>As soon as you can after the wedding. Fresh and invisible stains are easier to treat.</p></details>
+ <details><summary>Does the age of my dress matter?</summary><p>Yes. Gowns more than 20 years old need restoration, which is an additional charge. Choose the Restoration kit.</p></details>
  <details><summary>What if my gown has no care label?</summary><p>We are not responsible for gowns or accessories without a manufacturer's care label and fiber content.</p></details>
  <details><summary>Do accessories change the guarantee?</summary><p>Sashes, belts, beads or sequins added or altered by anyone other than the original manufacturer void any guarantee. <a href="/wedding-gown-release">Read the full release</a>.</p></details>
 
  <h2 class="s" id="request">Order your kit</h2>
+ <p class="note">Choose your package, then bring your gown to either Custom Cleaners location or ask for free pickup. We pack it in your kit and send it to Wedding Gown Preservation Co.</p>
  <form id="pf" novalidate>
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
   <fieldset><legend>Name <span class="req" aria-hidden="true">*</span></legend>
@@ -128,11 +144,15 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
   <fieldset><legend>Email <span class="req" aria-hidden="true">*</span></legend>
    <input type="email" name="Email" autocomplete="email" required aria-label="Email">
   </fieldset>
-  <fieldset><legend>Address where we should ship your kit <span class="req" aria-hidden="true">*</span></legend>
-   <div class="full"><input type="text" name="Street Address" placeholder="Street Address" autocomplete="address-line1" required aria-label="Street address"></div>
+  <fieldset><legend>Address (needed for pickup and return)</legend>
+   <div class="full"><input type="text" name="Street Address" placeholder="Street Address" autocomplete="address-line1" aria-label="Street address"></div>
    <div class="full"><input type="text" name="Street Address Line 2" placeholder="Apartment, suite, unit" autocomplete="address-line2" aria-label="Address line 2"></div>
-   <div class="row"><input type="text" name="City" placeholder="City" autocomplete="address-level2" required aria-label="City"><input type="text" name="State" placeholder="State" autocomplete="address-level1" required aria-label="State"></div>
-   <div class="row"><input type="text" name="Zip" placeholder="Zip Code" autocomplete="postal-code" inputmode="numeric" required aria-label="Zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
+   <div class="row"><input type="text" name="City" placeholder="City" autocomplete="address-level2" aria-label="City"><input type="text" name="State" placeholder="State" autocomplete="address-level1" aria-label="State"></div>
+   <div class="row"><input type="text" name="Zip" placeholder="Zip Code" autocomplete="postal-code" inputmode="numeric" aria-label="Zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
+  </fieldset>
+  <fieldset><legend>How will your gown get to us? <span class="req" aria-hidden="true">*</span></legend>
+   <label class="opt"><input type="radio" name="Gown Handoff" value="I will bring it to Custom Cleaners" required><span>I will bring it to Custom Cleaners</span></label>
+   <label class="opt"><input type="radio" name="Gown Handoff" value="Please arrange free pickup"><span>Please arrange free pickup</span></label>
   </fieldset>
   <fieldset><legend>Package <span class="req" aria-hidden="true">*</span></legend>
    <select name="Package" id="pkg" required aria-label="Package">
@@ -185,6 +205,7 @@ textarea{min-height:90px;resize:vertical}.req{color:#b3121c}.note{font-size:.95r
  var SHIP=0;
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
+ document.querySelectorAll('.pickbtn').forEach(function(bt){bt.addEventListener('click',function(){var k=bt.getAttribute('data-pkg'),p=document.getElementById('pkg');for(var i=0;i<p.options.length;i++){if(p.options[i].text.indexOf(k)===0){p.selectedIndex=i;break;}}show();document.getElementById('request').scrollIntoView({behavior:'smooth'});});});
  f.addEventListener('change',show);f.addEventListener('input',show);show();
  f.addEventListener('submit',function(e){
   e.preventDefault();
