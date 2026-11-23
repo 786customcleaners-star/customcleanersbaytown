@@ -20,6 +20,7 @@ const DECLARED = {
   '$3,000 higher (+$150)': 15000,
 };
 const ADDONS = ['Silk flowers', 'Shoes', 'Slip', 'Accessories box', 'Gown overlay', 'Detachable skirt', 'Photo documentation'];
+const TAX_RATE = 8.25; // percent, applied to taxable lines (kits and add-ons)
 const HANDOFF = ['I will bring it to Custom Cleaners', 'Please arrange free pickup'];
 
 function cors(req) {
@@ -62,10 +63,10 @@ export function buildOrder(d) {
   const pkg = PACKAGES[d.package];
   if (!pkg) throw new Error('bad package');
   if (!(d.declared in DECLARED)) throw new Error('bad declared value');
-  const items = [{ product: { name: pkg[0], price: pkg[1] }, quantity: 1 }];
-  if (DECLARED[d.declared]) items.push({ product: { name: 'Higher declared value (' + d.declared.split(' (')[0] + ')', price: DECLARED[d.declared] }, quantity: 1 });
+  const items = [{ product: { name: pkg[0], price: pkg[1] }, quantity: 1, taxable: true }];
+  if (DECLARED[d.declared]) items.push({ product: { name: 'Higher declared value (' + d.declared.split(' (')[0] + ')', price: DECLARED[d.declared] }, quantity: 1, taxable: false });
   const adds = Array.isArray(d.addons) ? d.addons.filter(a => ADDONS.includes(a)) : [];
-  adds.forEach(a => items.push({ product: { name: 'Add-on: ' + a, price: 5000 }, quantity: 1 }));
+  adds.forEach(a => items.push({ product: { name: 'Add-on: ' + a, price: 5000 }, quantity: 1, taxable: true }));
   const subtotal = items.reduce((s, i) => s + i.product.price, 0);
   return { items, subtotal, packageName: pkg[0] };
 }
@@ -91,6 +92,7 @@ export default {
       const inv = await api(env, token, 'POST', '/invoices', {
         customer: { email, name: first + ' ' + last },
         lineItems: order.items,
+        taxRate: TAX_RATE,
         memo,
       });
       await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {});
