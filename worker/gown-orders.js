@@ -85,8 +85,15 @@ export default {
     let order;
     try { order = buildOrder(d); } catch (e) { return json(req, { error: e.message }, 400); }
     const orderNumber = 'G' + Date.now().toString(36).toUpperCase().slice(-6);
-    const adds = (Array.isArray(d.addons) ? d.addons.filter(a => ADDONS.includes(a)) : []).join(', ') || 'none';
-    const memo = clean('Gown order ' + orderNumber + '. ' + order.packageName + '. Handoff: ' + d.handoff + '. Add-ons: ' + adds + '. Phone: ' + phone + '. Notes: ' + clean(d.notes, 200), 500);
+    const adds = (Array.isArray(d.addons) ? d.addons.filter(a => ADDONS.includes(a)) : []).join(', ');
+    const digits = phone.replace(/\D/g, '');
+    const phoneFmt = digits.length === 10 ? '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6) : phone;
+    const notes = clean(d.notes, 200);
+    const lines = ['Order ' + orderNumber, 'Gown handoff: ' + (d.handoff === HANDOFF[1] ? 'Free pickup requested' : 'Customer will bring gown to Custom Cleaners')];
+    if (adds) lines.push('Add-ons: ' + adds);
+    if (notes) lines.push('Notes: ' + notes);
+    lines.push('Phone: ' + phoneFmt, '', 'Thank you for choosing Custom Cleaners. We will ship your kit and instructions once payment is received. Questions? Call (832) 323-3745.');
+    const memo = lines.join('\n').slice(0, 500);
     try {
       const token = await getToken(env);
       const inv = await api(env, token, 'POST', '/invoices', {
