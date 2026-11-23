@@ -248,7 +248,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   if(!f.checkValidity()){f.reportValidity();return;}
   var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=(k in d)?d[k]+', '+v:v;});
   var t=total();
-  b.disabled=true;m.className='';m.textContent='Creating your invoice...';
+  b.disabled=true;m.className='';m.textContent='Creating your invoice. Please do not go back, refresh or close this page. Wait for the payment page to appear.';
   var addons=[];f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){addons.push(c.value.replace(/ \(\+\$50\)$/,''));});
   var order={first:d['First Name'],last:d['Last Name'],email:d['Email'],phone:d['Phone'],handoff:d['Gown Handoff'],package:d['Package'],declared:d['Declared Value'],addons:addons,notes:d['Notes']||'',website:d['_honey']||''};
   fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
