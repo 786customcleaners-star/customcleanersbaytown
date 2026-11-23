@@ -85,23 +85,28 @@ export default {
     let order;
     try { order = buildOrder(d); } catch (e) { return json(req, { error: e.message }, 400); }
     const orderNumber = 'G' + Date.now().toString(36).toUpperCase().slice(-6);
-    const adds = (Array.isArray(d.addons) ? d.addons.filter(a => ADDONS.includes(a)) : []).join(', ');
+    const fmt = (tz) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    const nice = (iso) => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' });
+    const orderDate = fmt('America/Chicago'), dueDate = fmt('America/New_York');
     const digits = phone.replace(/\D/g, '');
     const phoneFmt = digits.length === 10 ? '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6) : phone;
-    const notes = clean(d.notes, 200);
-    const lines = ['Order ' + orderNumber, 'Gown handoff: ' + (d.handoff === HANDOFF[1] ? 'Free pickup requested' : 'Customer will bring gown to Custom Cleaners')];
-    if (adds) lines.push('Add-ons: ' + adds);
+    const stZip = [clean(d.state, 30), clean(d.zip, 12)].filter(Boolean).join(' ');
+    const address = [clean(d.street, 80), clean(d.street2, 40), clean(d.city, 40), stZip].filter(Boolean).join(', ') || 'Not provided';
+    const notes = clean(d.notes, 150);
+    const lines = ['Order date: ' + nice(orderDate), 'Order #: ' + orderNumber, 'Due date: ' + nice(dueDate), '',
+      'Customer: ' + first + ' ' + last, 'Phone: ' + phoneFmt, 'Email: ' + email, 'Address: ' + address, '',
+      'Gown handoff: ' + (d.handoff === HANDOFF[1] ? 'Free pickup requested' : 'Customer will bring gown to Custom Cleaners')];
     if (notes) lines.push('Notes: ' + notes);
-    lines.push('Phone: ' + phoneFmt, '', 'Thank you for choosing Custom Cleaners. We will ship your kit and instructions once payment is received. Questions? Call (832) 323-3745.');
-    const memo = lines.join('\n').slice(0, 500);
+    const thanks = ['', 'Thank you for choosing Custom Cleaners. Questions? Call (832) 323-3745.'];
+    let memo = lines.join('\n');
+    if ((memo + '\n' + thanks.join('\n')).length <= 500) memo = memo + '\n' + thanks.join('\n');
+    memo = memo.slice(0, 500);
     try {
       const token = await getToken(env);
-      const inv = await api(env, token, 'POST', '/invoices', {
-        customer: { email, name: first + ' ' + last },
-        lineItems: order.items,
-        taxRate: TAX_RATE,
-        memo,
-      });
+      const body = { customer: { email, name: first + ' ' + last }, lineItems: order.items, taxRate: TAX_RATE, memo };
+      let inv;
+      try { inv = await api(env, token, 'POST', '/invoices', Object.assign({ dueAt: dueDate + 'T00:00:00Z' }, body)); }
+      catch (e) { inv = await api(env, token, 'POST', '/invoices', body); }
       await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {});
       let paymentUrl = null, total = null;
       for (let i = 0; i < 8 && !paymentUrl; i++) {
