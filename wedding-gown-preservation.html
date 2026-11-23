@@ -47,6 +47,9 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--tag);border-colo
 textarea{min-height:110px;resize:vertical}.req{color:#b3121c}.intro{font-size:1.1rem;margin:0 0 1.5rem}
 button.go{background:var(--ink);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;font-size:1.05rem;padding:.85rem 2rem;min-height:48px;cursor:pointer}
 button.go:hover{background:var(--ink2)}button.go[disabled]{opacity:.6;cursor:wait}
+button.go.loading::after{content:'';display:inline-block;width:1em;height:1em;margin-left:.6em;vertical-align:-.15em;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:gspin .8s linear infinite}
+@keyframes gspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){button.go.loading::after{animation-duration:2.5s}}
 button.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}button.alt:hover{background:var(--steam)}
 #msg{margin:1rem 0 0;font-weight:600}.ok{color:#0a7a3a}.bad{color:#b3121c}
 @media(max-width:600px){.row{grid-template-columns:1fr}form{padding:1.1rem}.hero img{order:-1}}
@@ -248,7 +251,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   if(!f.checkValidity()){f.reportValidity();return;}
   var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=(k in d)?d[k]+', '+v:v;});
   var t=total();
-  b.disabled=true;m.className='';m.textContent='Creating your invoice, Please wait. Don\'t click the back button.';
+  b.disabled=true;b.classList.add('loading');m.className='';m.textContent='Creating your invoice, Please wait. Don\'t click the back button.';
   var addons=[];f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){addons.push(c.value.replace(/ \(\+\$50\)$/,''));});
   var order={first:d['First Name'],last:d['Last Name'],email:d['Email'],phone:d['Phone'],handoff:d['Gown Handoff'],package:d['Package'],declared:d['Declared Value'],addons:addons,notes:d['Notes']||'',street:d['Street Address']||'',street2:d['Street Address Line 2']||'',city:d['City']||'',state:d['State']||'',zip:d['Zip']||'',website:d['_honey']||''};
   fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
@@ -267,12 +270,12 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
     if(j&&(j.success===true||j.success==='true')){
      document.getElementById('on').textContent=n;document.getElementById('dt').textContent='$'+t;
      var pb=document.getElementById('paybtn'),pm=document.getElementById('paymsg');
-     if(link){pb.href=link;pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you.';}
+     if(link){pb.href=link;pb.removeAttribute('target');pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you.';}
      f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
     }else{throw new Error('fail');}
    });
   })
-  .catch(function(){m.className='bad';m.textContent='Sorry, something went wrong. Please call us at (832) 323-3745 or (281) 783-6669.';b.disabled=false;});
+  .catch(function(){m.className='bad';m.textContent='Sorry, something went wrong. Please call us at (832) 323-3745 or (281) 783-6669.';b.disabled=false;b.classList.remove('loading');});
  });
 })();
 </script>
