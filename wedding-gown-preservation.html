@@ -112,7 +112,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  <h2 class="s" id="packages">Choose your kit</h2>
  <div class="pk">
   <div class="box"><span class="tagp">Most popular</span><h3>Traditional</h3><p class="pr">$360</p><p class="for">For gowns under 20 years old, originally under $2,000.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/traditional-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Traditional">Order this kit</button></div>
-  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$435</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/celebrity-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
+  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$450</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/celebrity-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
   <div class="box"><span class="tagp">Wear it again</span><h3>Clean Only</h3><p class="pr">$260</p><p class="for">Cleaned and returned ready to wear. Add preservation for +$100.</p><ul><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li></ul><img class="pimg" src="/img/kit-front.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Clean Only - $260">Order this kit</button></div>
   <div class="box"><span class="tagp">For older gowns</span><h3>Restoration</h3><p class="pr">$460</p><p class="for">For gowns 20 years or older, or with yellowing.</p><ul><li>Cleaning, restoration and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/preserved-gown.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Restoration">Order this kit</button></div>
   <div class="box"><span class="tagp">Keepsake</span><h3>Flower Girl / Christening</h3><p class="pr">$175</p><p class="for">For children's gowns.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/christening-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Flower Girl">Order this kit</button></div>
@@ -196,7 +196,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
     <option data-p="260">Clean Only - $260</option>
     <option data-p="360">Clean Only + Preservation - $360</option>
     <option data-p="360">Traditional Cleaning + Preservation - $360</option>
-    <option data-p="435">Celebrity Cleaning + Preservation - $435</option>
+    <option data-p="450">Celebrity Cleaning + Preservation - $450</option>
     <option data-p="460">Restoration - $460</option>
     <option data-p="175">Flower Girl / Christening - $175</option>
    </select>
@@ -229,7 +229,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  <section id="done" class="done" hidden tabindex="-1">
   <h3>Order received. One more step: pay</h3>
   <p>Order number <b id="on"></b></p>
-  <p>Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
+  <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
   <p class="note">We will ship your kit and instructions once your payment is received. Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </section>
@@ -238,7 +238,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 <script>
 (function(){
  var f=document.getElementById('pf'),m=document.getElementById('msg'),b=f.querySelector('button.go'),tot=document.getElementById('tot');
- var SHIP=0;
+ var SHIP=0,WORKER='https://custom-cleaners-orders.eicctexas.workers.dev';
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
  document.querySelectorAll('.pickbtn').forEach(function(bt){bt.addEventListener('click',function(){var k=bt.getAttribute('data-pkg'),p=document.getElementById('pkg');for(var i=0;i<p.options.length;i++){if(p.options[i].text.indexOf(k)===0){p.selectedIndex=i;break;}}show();document.getElementById('request').scrollIntoView({behavior:'smooth'});});});
@@ -247,18 +247,30 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}
   var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=(k in d)?d[k]+', '+v:v;});
-  var n='G'+Date.now().toString(36).toUpperCase().slice(-6),t=total();
-  d['Order Number']=n;d['Order Total']='$'+t+' (before sales tax)';
-  d._subject='Gown Order '+n+' - '+d['First Name']+' '+d['Last Name']+' - $'+t;
-  d._replyto=d['Email'];d._template='table';d._captcha='false';
-  b.disabled=true;m.className='';m.textContent='Sending...';
-  fetch('https://formsubmit.co/ajax/eicctexas@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
-  .then(function(r){return r.json();})
-  .then(function(j){
-   if(j&&(j.success===true||j.success==='true')){
-    document.getElementById('on').textContent=n;document.getElementById('dt').textContent='$'+t;
-    f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
-   }else{throw new Error('fail');}
+  var t=total();
+  b.disabled=true;m.className='';m.textContent='Creating your invoice...';
+  var addons=[];f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){addons.push(c.value.replace(/ \(\+\$50\)$/,''));});
+  var order={first:d['First Name'],last:d['Last Name'],email:d['Email'],phone:d['Phone'],handoff:d['Gown Handoff'],package:d['Package'],declared:d['Declared Value'],addons:addons,notes:d['Notes']||'',website:d['_honey']||''};
+  fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
+  .then(function(r){return r.ok?r.json().catch(function(){return null;}):null;},function(){return null;})
+  .then(function(w){
+   var n=(w&&w.ok&&w.orderNumber)||('G'+Date.now().toString(36).toUpperCase().slice(-6));
+   var link=(w&&w.ok&&w.paymentUrl)||'';
+   d['Order Number']=n;d['Order Total']='$'+t+' (before sales tax)';
+   d['Invoice Created']=w&&w.ok?('Yes. Invoice '+w.invoiceId+(link?'':' (pay link pending)')):'NO - create invoice manually';
+   if(link)d['Pay Link']=link;
+   d._subject='Gown Order '+n+' - '+d['First Name']+' '+d['Last Name']+' - $'+t;
+   d._replyto=d['Email'];d._template='table';d._captcha='false';
+   return fetch('https://formsubmit.co/ajax/eicctexas@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
+   .then(function(r){return r.json();})
+   .then(function(j){
+    if(j&&(j.success===true||j.success==='true')){
+     document.getElementById('on').textContent=n;document.getElementById('dt').textContent='$'+t;
+     var pb=document.getElementById('paybtn'),pm=document.getElementById('paymsg');
+     if(link){pb.href=link;pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you.';}
+     f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
+    }else{throw new Error('fail');}
+   });
   })
   .catch(function(){m.className='bad';m.textContent='Sorry, something went wrong. Please call us at (832) 323-3745 or (281) 783-6669.';b.disabled=false;});
  });
