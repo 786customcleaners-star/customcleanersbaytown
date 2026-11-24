@@ -216,14 +216,18 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
    <p class="note">We pack your gown and ship it for you, with the same insured values as the kit.</p>
   </div>
  </div>
- <h2 class="s">GownTracker&trade;: track your gown every step of the way</h2>
+ <h2 class="s" id="track">Track the status of your gown</h2>
  <div class="card" style="border-left-color:var(--tag)">
-  <ul>
-   <li>Follow your wedding gown online, around the clock, while it is being cleaned and preserved.</li>
-   <li>Peace of mind from the day Wedding Gown Preservation Co. receives your gown until it is on its way back to you.</li>
-   <li><a href="https://www.weddinggownpreservationkit.com/gowntracker--pg-21.html" target="_blank" rel="noopener">Learn how GownTracker&trade; works &rarr;</a></li>
-  </ul>
+  <p style="margin:0 0 1rem">Follow your gown with GownTracker&trade; while it is cleaned and preserved. Please allow up to <b>2 weeks</b> after it is received for your gown to be entered into GownTracker&trade;. Your UPS tracking number shows when your dress arrives at the facility. Enter your order number below to continue.</p>
+  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status/#gown-status-results" method="post" target="gtframe">
+   <input type="text" name="OrderNumber" placeholder="Enter your order number" aria-label="Order number" required autocomplete="off">
+   <button type="submit" class="go" aria-label="Track my gown">Track</button>
+  </form>
+  <iframe name="gtframe" id="gtframe" title="GownTracker results" hidden style="width:100%;height:620px;border:1px solid var(--line);border-radius:10px;margin-top:1rem;background:#fff"></iframe>
+  <p class="note" id="gtnote" hidden style="margin:.8rem 0 0">Results not showing? <a href="https://www.gownpreservation.com/gown-status/" target="_blank" rel="noopener">Open GownTracker in a new tab</a>.</p>
  </div>
+ <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}</style>
+ <script>document.getElementById('gt').addEventListener('submit',function(){document.getElementById('gtframe').hidden=false;document.getElementById('gtnote').hidden=false;});</script>
  <h2 class="s">Preserved gowns</h2>
  <div class="gal">
   <img src="/img/preserved-gowns.jpg" alt="Several preserved gowns in Wedding Gown Preservation Co. boxes" loading="lazy" width="360" height="480">
