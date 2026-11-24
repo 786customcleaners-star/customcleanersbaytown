@@ -97,6 +97,8 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 .kact{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:0 0 .8rem}.korder{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.8rem 1.6rem!important;text-transform:uppercase;letter-spacing:.03em}.korder:hover{background:#25652f!important}
 .kship{color:#2f7d3b;font-size:.92rem}.kalt{font-size:.95rem;color:#5a6080;margin:0}.kalt a{color:#7a0a12;font-weight:700}
 @media(max-width:700px){.kp{grid-template-columns:1fr;padding:1.1rem}.kimg{border-right:0;padding:0}.kimg img{max-width:240px}}
+.help{background:#fff;border:1px solid var(--line);border-left:6px solid var(--tag);border-radius:12px;padding:.2rem 1.1rem;margin:0 0 1rem}.help summary{font-weight:700}
+.hq label{display:block;font-weight:600;color:var(--ink);margin:.8rem 0 .3rem}.hq select{max-width:420px}.hq>div{margin:0}#hres{margin:1rem 0 .8rem;background:var(--steam);border-radius:10px;padding:.8rem 1rem}#hres p{margin:0 0 .6rem}#hgo{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.7rem 1.4rem!important}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -130,6 +132,20 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 
  <h2 class="s" id="packages" style="margin-bottom:.2rem">Order Your Wedding Dress Preservation, Restoration, or Clean-Only Kit</h2>
  <p class="arr" style="margin:0 0 1.2rem;font-family:var(--serif);font-style:italic;letter-spacing:.04em;color:#7a0a12;font-size:1.15rem">Arrives in Just 3&ndash;5 Days</p>
+ <details class="help" id="help">
+  <summary>Not sure which kit? Help me choose</summary>
+  <div class="hq">
+   <label for="hq1">What is the gown for?</label>
+   <select id="hq1"><option value="">Choose one</option><option value="bridal">A wedding or bridal gown</option><option value="child">A flower girl or christening gown</option></select>
+   <div id="hq2w" hidden><label for="hq2">What do you want to do with it?</label>
+   <select id="hq2"><option value="">Choose one</option><option value="wear">Clean it and wear it again</option><option value="keep">Preserve it as a keepsake</option></select></div>
+   <div id="hq3w" hidden><label for="hq3">How old is the gown, and what condition is it in?</label>
+   <select id="hq3"><option value="">Choose one</option><option value="new">Less than 20 years old, no yellowing</option><option value="old">20 years or older, or it has yellowing</option></select></div>
+   <div id="hq4w" hidden><label for="hq4">What did the gown originally cost?</label>
+   <select id="hq4"><option value="">Choose one</option><option value="low">Under $2,000</option><option value="high">$2,000 or more, or a designer gown</option></select></div>
+   <div id="hres" aria-live="polite" hidden><p id="htxt"></p><button type="button" class="pickbtn korder" id="hgo">Show me this kit</button></div>
+  </div>
+ </details>
  <div class="ktabs" role="tablist" aria-label="Choose a kit"><button type="button" role="tab" id="t0" aria-controls="k0" aria-selected="true" tabindex="0"><b>Traditional</b><small>Most popular</small></button><button type="button" role="tab" id="t1" aria-controls="k1" aria-selected="false" tabindex="-1"><b>Celebrity</b><small>Couture &amp; luxury</small></button><button type="button" role="tab" id="t2" aria-controls="k2" aria-selected="false" tabindex="-1"><b>Clean-Only</b><small>Wear it again</small></button><button type="button" role="tab" id="t3" aria-controls="k3" aria-selected="false" tabindex="-1"><b>Restoration</b><small>For older gowns</small></button><button type="button" role="tab" id="t4" aria-controls="k4" aria-selected="false" tabindex="-1"><b>Flower Girl / Christening</b><small>Keepsake</small></button></div>
  <div class="kcard">
   <div class="kp" role="tabpanel" id="k0" aria-labelledby="t0">
@@ -345,6 +361,16 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  function pick(i,focus){tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;panels[j].hidden=j!==i;});if(focus)tabs[i].focus();}
  tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i);});t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;if(n>=0&&n<tabs.length){e.preventDefault();pick(n,true);}});});
  document.querySelectorAll('.kjump').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pick(+a.getAttribute('data-to'));});});
+ var hq=['hq1','hq2','hq3','hq4'].map(function(i){return document.getElementById(i);}),hres=document.getElementById('hres'),hgo=document.getElementById('hgo'),hidx=0;
+ var HK=[['Traditional','Your gown is under 20 years old and was under $2,000, so the Traditional Kit is a good fit.'],['Celebrity','Because of the higher value, the Celebrity Kit adds extra insured value for your gown.'],['Clean Only','The Clean-Only Kit cleans your gown and returns it ready to wear. You can add preservation for +$100.'],['Restoration','Older gowns or gowns with yellowing need restoration, so the Restoration Kit is the right choice.'],['Flower Girl','The Flower Girl / Christening Kit is made for children\'s gowns.']];
+ function help(){var a=hq[0].value,b=hq[1].value,c=hq[2].value,d=hq[3].value,k=-1;
+  document.getElementById('hq2w').hidden=a!=='bridal';
+  document.getElementById('hq3w').hidden=!(a==='bridal'&&b==='keep');
+  document.getElementById('hq4w').hidden=!(a==='bridal'&&b==='keep'&&c==='new');
+  if(a==='child')k=4;else if(a==='bridal'&&b==='wear')k=2;else if(a==='bridal'&&b==='keep'){if(c==='old')k=3;else if(c==='new'&&d)k=d==='high'?1:0;}
+  hres.hidden=k<0;if(k>=0){hidx=k;document.getElementById('htxt').textContent='We suggest the '+HK[k][0]+' Kit. '+HK[k][1];}}
+ hq.forEach(function(s){s.addEventListener('change',help);});
+ hgo.addEventListener('click',function(){pick(hidx);document.querySelector('.ktabs').scrollIntoView({behavior:'smooth'});});
  var SHIP=0,WORKER='https://custom-cleaners-orders.eicctexas.workers.dev';
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
