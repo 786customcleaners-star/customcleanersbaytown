@@ -97,8 +97,20 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 .kact{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:0 0 .8rem}.korder{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.8rem 1.6rem!important;text-transform:uppercase;letter-spacing:.03em}.korder:hover{background:#25652f!important}
 .kship{color:#2f7d3b;font-size:.92rem}.kalt{font-size:.95rem;color:#5a6080;margin:0}.kalt a{color:#7a0a12;font-weight:700}
 @media(max-width:700px){.kp{grid-template-columns:1fr;padding:1.1rem}.kimg{border-right:0;padding:0}.kimg img{max-width:240px}}
-.help{background:#fff;border:1px solid var(--line);border-left:6px solid var(--tag);border-radius:12px;padding:.2rem 1.1rem;margin:0 0 1rem}.help summary{font-weight:700}
-.hq label{display:block;font-weight:600;color:var(--ink);margin:.8rem 0 .3rem}.hq select{max-width:420px}.hq>div{margin:0}#hres{margin:1rem 0 .8rem;background:var(--steam);border-radius:10px;padding:.8rem 1rem}#hres p{margin:0 0 .6rem}#hgo{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.7rem 1.4rem!important}
+.hmc{margin:0 0 1.2rem}.hopen{font:inherit;font-weight:700;color:var(--ink);background:#fff;border:1px solid var(--line);border-left:6px solid var(--tag);border-radius:12px;padding:.9rem 1.1rem;width:100%;text-align:left;cursor:pointer;min-height:48px}
+.hbody{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.5rem;margin-top:.6rem}
+.hstep{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0 0 .5rem}
+.hbar{height:4px;background:var(--steam);border-radius:4px;margin:0 0 1.2rem}.hbar i{display:block;height:100%;background:var(--ink);border-radius:4px;transition:width .3s}
+#hqt{font-family:var(--serif);font-size:clamp(1.3rem,3.5vw,1.8rem);color:var(--ink);margin:0 0 .4rem}.hsel{font-weight:600;margin:0 0 .8rem}
+.hopts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 1rem}
+.hopt{font:inherit;text-align:left;border:0;border-radius:10px;padding:1.1rem 1.2rem;cursor:pointer;display:flex;flex-direction:column;gap:.4rem;background:var(--steam);color:var(--text)}.hopt:nth-child(2){background:#f6f4f1}.hopt:hover,.hopt:focus-visible{box-shadow:0 4px 14px rgba(10,26,122,.18)}
+.hopt b{font-family:var(--serif);font-size:1.1rem;color:var(--ink)}.hopt span:last-child{font-size:.92rem}.hico{color:var(--ink2);display:block}
+.hwhy{font-size:.98rem;margin:0 0 1rem}.hback{font:inherit;background:#fff;border:1px solid var(--ink);color:var(--ink);border-radius:6px;padding:.45rem 1rem;cursor:pointer;min-height:40px}
+.hrt{text-align:center;max-width:56ch;margin:0 auto 1.2rem}
+.hcard{position:relative;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:1.4rem;border:1px solid var(--line);border-radius:14px;padding:1.6rem 1.2rem 1.2rem;box-shadow:0 6px 18px rgba(10,26,122,.08)}.hcard .kbadge{position:absolute;top:0;left:0;border-radius:14px 0 8px 0;margin:0}
+.hcimg img{width:100%;max-width:300px;height:auto;border-radius:8px;display:block;margin:auto}.hcinfo h3{font-family:var(--serif);color:var(--ink);font-size:1.7rem;margin:0 0 .6rem}
+#hgo{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.8rem 1.6rem!important;text-transform:uppercase;letter-spacing:.03em}
+@media(max-width:700px){.hopts,.hcard{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -132,20 +144,26 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 
  <h2 class="s" id="packages" style="margin-bottom:.2rem">Order Your Wedding Dress Preservation, Restoration, or Clean-Only Kit</h2>
  <p class="arr" style="margin:0 0 1.2rem;font-family:var(--serif);font-style:italic;letter-spacing:.04em;color:#7a0a12;font-size:1.15rem">Arrives in Just 3&ndash;5 Days</p>
- <details class="help" id="help">
-  <summary>Not sure which kit? Help me choose</summary>
-  <div class="hq">
-   <label for="hq1">What is the gown for?</label>
-   <select id="hq1"><option value="">Choose one</option><option value="bridal">A wedding or bridal gown</option><option value="child">A flower girl or christening gown</option></select>
-   <div id="hq2w" hidden><label for="hq2">What do you want to do with it?</label>
-   <select id="hq2"><option value="">Choose one</option><option value="wear">Clean it and wear it again</option><option value="keep">Preserve it as a keepsake</option></select></div>
-   <div id="hq3w" hidden><label for="hq3">How old is the gown, and what condition is it in?</label>
-   <select id="hq3"><option value="">Choose one</option><option value="new">Less than 20 years old, no yellowing</option><option value="old">20 years or older, or it has yellowing</option></select></div>
-   <div id="hq4w" hidden><label for="hq4">What did the gown originally cost?</label>
-   <select id="hq4"><option value="">Choose one</option><option value="low">Under $2,000</option><option value="high">$2,000 or more, or a designer gown</option></select></div>
-   <div id="hres" aria-live="polite" hidden><p id="htxt"></p><button type="button" class="pickbtn korder" id="hgo">Show me this kit</button></div>
+ <section class="hmc" id="hmc" aria-label="Help me choose a kit">
+  <button type="button" class="hopen" id="hopen" aria-expanded="false">Not sure which kit? Help me choose</button>
+  <div class="hbody" id="hbody" hidden>
+   <p class="hstep" id="hstep"></p><div class="hbar"><i id="hfill"></i></div>
+   <div id="hq">
+    <h3 id="hqt"></h3><p class="hsel">Select an option to continue.</p>
+    <div class="hopts" id="hopts"></div>
+    <p class="hwhy"><b>Why this matters:</b> <span id="hwhy"></span></p>
+    <button type="button" class="hback" id="hback">&larr; Back</button>
+   </div>
+   <div id="hres" hidden>
+    <p class="hstep" style="text-align:center">Our recommendation</p>
+    <p class="hrt" id="hrt"></p>
+    <div class="hcard"><span class="kbadge" id="hbadge"></span><div class="hcimg"><img id="himg" alt="" width="300" height="400"></div>
+     <div class="hcinfo"><h3 id="hname"></h3><p class="perfect" id="hperf"></p><ul class="kf" id="hfeat"></ul><p class="kprice" id="hprice"></p>
+      <p class="kact"><button type="button" class="pickbtn korder" id="hgo">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p></div></div>
+    <p class="kalt"><button type="button" class="hback" id="hrestart">Start over</button> &nbsp; Looking for something else? <a href="#" id="hchild">Flower Girl / Christening Kit</a></p>
+   </div>
   </div>
- </details>
+ </section>
  <div class="ktabs" role="tablist" aria-label="Choose a kit"><button type="button" role="tab" id="t0" aria-controls="k0" aria-selected="true" tabindex="0"><b>Traditional</b><small>Most popular</small></button><button type="button" role="tab" id="t1" aria-controls="k1" aria-selected="false" tabindex="-1"><b>Celebrity</b><small>Couture &amp; luxury</small></button><button type="button" role="tab" id="t2" aria-controls="k2" aria-selected="false" tabindex="-1"><b>Clean-Only</b><small>Wear it again</small></button><button type="button" role="tab" id="t3" aria-controls="k3" aria-selected="false" tabindex="-1"><b>Restoration</b><small>For older gowns</small></button><button type="button" role="tab" id="t4" aria-controls="k4" aria-selected="false" tabindex="-1"><b>Flower Girl / Christening</b><small>Keepsake</small></button></div>
  <div class="kcard">
   <div class="kp" role="tabpanel" id="k0" aria-labelledby="t0">
@@ -361,16 +379,29 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  function pick(i,focus){tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;panels[j].hidden=j!==i;});if(focus)tabs[i].focus();}
  tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i);});t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;if(n>=0&&n<tabs.length){e.preventDefault();pick(n,true);}});});
  document.querySelectorAll('.kjump').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pick(+a.getAttribute('data-to'));});});
- var hq=['hq1','hq2','hq3','hq4'].map(function(i){return document.getElementById(i);}),hres=document.getElementById('hres'),hgo=document.getElementById('hgo'),hidx=0;
- var HK=[['Traditional','Your gown is under 20 years old and was under $2,000, so the Traditional Kit is a good fit.'],['Celebrity','Because of the higher value, the Celebrity Kit adds extra insured value for your gown.'],['Clean Only','The Clean-Only Kit cleans your gown and returns it ready to wear. You can add preservation for +$100.'],['Restoration','Older gowns or gowns with yellowing need restoration, so the Restoration Kit is the right choice.'],['Flower Girl','The Flower Girl / Christening Kit is made for children\'s gowns.']];
- function help(){var a=hq[0].value,b=hq[1].value,c=hq[2].value,d=hq[3].value,k=-1;
-  document.getElementById('hq2w').hidden=a!=='bridal';
-  document.getElementById('hq3w').hidden=!(a==='bridal'&&b==='keep');
-  document.getElementById('hq4w').hidden=!(a==='bridal'&&b==='keep'&&c==='new');
-  if(a==='child')k=4;else if(a==='bridal'&&b==='wear')k=2;else if(a==='bridal'&&b==='keep'){if(c==='old')k=3;else if(c==='new'&&d)k=d==='high'?1:0;}
-  hres.hidden=k<0;if(k>=0){hidx=k;document.getElementById('htxt').textContent='We suggest the '+HK[k][0]+' Kit. '+HK[k][1];}}
- hq.forEach(function(s){s.addEventListener('change',help);});
- hgo.addEventListener('click',function(){pick(hidx);document.querySelector('.ktabs').scrollIntoView({behavior:'smooth'});});
+ var ICON={'clock': '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>', 'gown': '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4l1 6-2 3 4 9H7l4-9-2-3z"/></svg>', 'tag': '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>', 'gem': '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4l-2 5 5 11 5-11-2-5"/></svg>', 'box': '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>'};
+ var H={
+ Traditional:{i:0,n:'Traditional Kit',img:'traditional-box.jpg',price:'360',perf:'Perfect for: Gowns less than 20 years old and originally purchased for under $2,000.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee','Prepaid shipping included'],badge:'Most popular',t:'Your gown is under 20 years old and cost under $2,000, so the Traditional Kit is the ideal fit for its age and value.'},
+ Celebrity:{i:1,n:'Celebrity Kit',img:'celebrity-box.jpg',price:'435',perf:'Perfect for: Higher-value and designer gowns.',f:['Premium cleaning and preservation','$3,000 insured value included','100 Year Certificate of Guarantee','Prepaid shipping included'],badge:'Couture & luxury',t:'Your gown is under 20 years old and was a higher-value or designer gown, so the Celebrity Kit adds the extra insured value it deserves.'},
+ Clean:{i:2,n:'Clean-Only Kit',img:'kit-front.jpg',price:'260',perf:'Perfect for: Gowns you want cleaned and returned ready to wear. Add preservation for +$100.',f:['Professional gown cleaning','Ready in 2\u20133 weeks','Prepaid shipping included'],badge:'Wear it again',t:'Since you plan to wear or use the gown again soon, the Clean-Only Kit cleans it and returns it ready to wear.'},
+ Restoration:{i:3,n:'Restoration Kit',img:'preserved-gown.jpg',price:'460',perf:'Perfect for: Gowns 20 years or older, or with yellowing.',f:['Cleaning, restoration and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'For older gowns',t:'Gowns 20 years or older need restoration to treat yellowing and aging, so the Restoration Kit is the right choice.'},
+ Child:{i:4,n:'Flower Girl / Christening Kit',img:'christening-box.jpg',price:'175',perf:'Perfect for: Children\'s gowns.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'Keepsake',t:'The Flower Girl / Christening Kit is made for smaller heirloom gowns.'}};
+ var Q=[{t:'How old is your wedding dress?',w:'Older gowns often have yellowing and fabric aging that need restoration instead of standard cleaning.',o:[['new','Less than 20 years old','Stored or worn within the last 20 years.','gown'],['old','20 years or older','More than 20 years old, an heirloom dress, or a vintage piece passed down through your family.','clock']]},
+ {t:'What was the original price of your wedding dress?',w:'The Traditional Kit includes $2,000 of insured value and the Celebrity Kit includes $3,000. The cleaning and preservation process is the same.',o:[['low','Under $2,000','Most wedding dresses fall here. You will receive the Traditional Kit with $2,000 insured value.','tag'],['high','Over $2,000 (couture, silk, designer)','The right fit for high-end designer or couture dresses, with $3,000 insured value.','gem']]},
+ {t:'And finally, what do you plan to do with your dress?',w:'Preservation protects your gown for long-term storage. Clean-only returns it ready to wear. You can add preservation to Clean Only for +$100.',o:[['keep','Preserve as a keepsake or pass on to a daughter or family member','Cleaned and sealed in a preservation box with our 100 Year Certificate of Guarantee.','box'],['wear','Cleaned for wearing or selling in the next year','Professional cleaning so the dress is fresh and ready to wear or sell.','gown']]}];
+ var hs=0,ha=[],hsel='Traditional',hb=document.getElementById('hbody'),hqe=document.getElementById('hq'),hre=document.getElementById('hres');
+ function hstep(){var q=Q[hs];hqe.hidden=false;hre.hidden=true;document.getElementById('hstep').textContent='Step '+(hs+1)+' of 3';document.getElementById('hfill').style.width=((hs+1)/3*100)+'%';
+  document.getElementById('hqt').textContent=q.t;document.getElementById('hwhy').textContent=q.w;document.getElementById('hback').style.visibility=hs?'visible':'hidden';
+  var o=document.getElementById('hopts');o.innerHTML='';q.o.forEach(function(x){var b=document.createElement('button');b.type='button';b.className='hopt';b.setAttribute('data-v',x[0]);b.innerHTML='<span class="hico">'+ICON[x[3]]+'</span><b></b><span></span>';b.children[1].textContent=x[1];b.children[2].textContent=x[2];b.addEventListener('click',function(){hpick(x[0]);});o.appendChild(b);});}
+ function hshow(k){hsel=k;var r=H[k];hqe.hidden=true;hre.hidden=false;document.getElementById('hstep').textContent='';document.getElementById('hfill').style.width='100%';document.getElementById('hrt').textContent=r.t;document.getElementById('hbadge').textContent=r.badge;var im=document.getElementById('himg');im.src='/img/'+r.img;im.alt=r.n;document.getElementById('hname').textContent=r.n;document.getElementById('hperf').textContent=r.perf;
+  var u=document.getElementById('hfeat');u.innerHTML='';r.f.forEach(function(x){var l=document.createElement('li');l.textContent=x;u.appendChild(l);});document.getElementById('hprice').textContent=r.price;}
+ function hpick(v){ha[hs]=v;if(hs===0&&v==='old'){hshow('Restoration');return;}if(hs<2){hs++;hstep();return;}
+  if(v==='wear')hshow('Clean');else hshow(ha[1]==='high'?'Celebrity':'Traditional');}
+ document.getElementById('hopen').addEventListener('click',function(){var o=hb.hidden;hb.hidden=!o;this.setAttribute('aria-expanded',o);if(o){hs=0;ha=[];hstep();}});
+ document.getElementById('hback').addEventListener('click',function(){if(hs>0){hs--;hstep();}});
+ document.getElementById('hrestart').addEventListener('click',function(){hs=0;ha=[];hstep();});
+ document.getElementById('hchild').addEventListener('click',function(e){e.preventDefault();hshow('Child');});
+ document.getElementById('hgo').addEventListener('click',function(){pick(H[hsel].i);document.querySelector('.ktabs').scrollIntoView({behavior:'smooth'});});
  var SHIP=0,WORKER='https://custom-cleaners-orders.eicctexas.workers.dev';
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
