@@ -221,12 +221,12 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   <p style="margin:0 0 .6rem">Please enter the serial number from your order form.</p>
   <p class="note" style="margin:0 0 1rem"><b>Note:</b> don&rsquo;t use the &ldquo;-&rdquo; between the letters and the numbers. Examples: WG12345678, KP12345678 or DS12345678.</p>
   <p class="note" style="margin:0 0 1rem">Please allow up to <b>2 weeks</b> after your gown is received for it to be entered into GownTracker&trade;.</p>
-  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status/#gown-status-results" method="post" target="gtframe">
+  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status-2/#gown-status-results" method="post" target="gtframe">
    <input type="text" name="OrderNumber" placeholder="Enter your serial number, e.g. WG12345678" aria-label="Serial number from your order form" required autocomplete="off">
    <button type="submit" class="go" aria-label="Track my gown">Track</button>
   </form>
   <iframe name="gtframe" id="gtframe" title="GownTracker results" hidden style="width:100%;height:620px;border:1px solid var(--line);border-radius:10px;margin-top:1rem;background:#fff"></iframe>
-  <p class="note" id="gtnote" hidden style="margin:.8rem 0 0">Results not showing? <a href="https://www.gownpreservation.com/gown-status/" target="_blank" rel="noopener">Open GownTracker in a new tab</a>.</p>
+  <p class="note" id="gtnote" hidden style="margin:.8rem 0 0">Results not showing? <a href="https://www.gownpreservation.com/gown-status-2/" target="_blank" rel="noopener">Open GownTracker in a new tab</a>.</p>
  </div>
  <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}</style>
  <script>document.getElementById('gt').addEventListener('submit',function(){document.getElementById('gtframe').hidden=false;document.getElementById('gtnote').hidden=false;});</script>
