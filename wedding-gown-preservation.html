@@ -82,6 +82,21 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 .chk{margin:0 0 1rem;padding-left:1.2rem}.chk li{margin:0 0 .4rem}
 .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}.gal img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 @media(max-width:700px){.two{grid-template-columns:1fr}.himg{order:-1;margin:0 auto}}
+.ktabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin:0 0 1rem}
+.ktabs button{font:inherit;background:transparent;border:2px solid transparent;border-radius:10px;padding:.6rem .5rem;cursor:pointer;color:#8a90a8;text-align:center;min-height:56px}
+.ktabs button b{display:block;font-family:var(--serif);font-size:1.15rem}.ktabs button small{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}
+.ktabs button[aria-selected=true]{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(10,26,122,.08);overflow:hidden}
+.kp{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:1.5rem;padding:1.5rem}.kp[hidden]{display:none}
+.kimg{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);padding-right:1.5rem}.kimg img{width:100%;max-width:320px;height:auto;border-radius:8px}
+.kbadge{display:inline-block;background:#7a0a12;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .7rem;border-radius:4px;margin-bottom:.4rem}
+.kinfo h3{font-family:var(--serif);color:var(--ink);font-size:clamp(1.6rem,4vw,2.1rem);margin:0 0 .7rem}
+.perfect{background:#f6f4f1;border-left:4px solid #7a0a12;padding:.6rem .8rem;border-radius:4px;margin:0 0 1rem;font-size:.98rem}
+.kf{list-style:none;margin:0 0 1rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.4rem 1.2rem}.kf li:before{content:"\2713\00a0";color:#2f7d3b;font-weight:700}
+.kprice{font-family:var(--serif);font-size:2.6rem;color:#5c0a10;margin:.2rem 0 .6rem;line-height:1}.kprice:before{content:"$";font-size:1.3rem;vertical-align:top;margin-right:.1rem}
+.kact{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:0 0 .8rem}.korder{width:auto!important;margin:0!important;background:#2f7d3b!important;padding:.8rem 1.6rem!important;text-transform:uppercase;letter-spacing:.03em}.korder:hover{background:#25652f!important}
+.kship{color:#2f7d3b;font-size:.92rem}.kalt{font-size:.95rem;color:#5a6080;margin:0}.kalt a{color:#7a0a12;font-weight:700}
+@media(max-width:700px){.kp{grid-template-columns:1fr;padding:1.1rem}.kimg{border-right:0;padding:0}.kimg img{max-width:240px}}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -113,12 +128,63 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  </section>
 
  <h2 class="s" id="packages">Choose your kit</h2>
- <div class="pk">
-  <div class="box"><span class="tagp">Most popular</span><h3>Traditional</h3><p class="pr">$360</p><p class="for">For gowns under 20 years old, originally under $2,000.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/traditional-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Traditional">Order this kit</button></div>
-  <div class="box"><span class="tagp">Couture and luxury</span><h3>Celebrity</h3><p class="pr">$450</p><p class="for">For higher-value and designer gowns.</p><ul><li>Premium cleaning and preservation</li><li>$3,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul><img class="pimg" src="/img/celebrity-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Celebrity">Order this kit</button></div>
-  <div class="box"><span class="tagp">Wear it again</span><h3>Clean Only</h3><p class="pr">$260</p><p class="for">Cleaned and returned ready to wear. Add preservation for +$100.</p><ul><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li></ul><img class="pimg" src="/img/kit-front.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Clean Only - $260">Order this kit</button></div>
-  <div class="box"><span class="tagp">For older gowns</span><h3>Restoration</h3><p class="pr">$460</p><p class="for">For gowns 20 years or older, or with yellowing.</p><ul><li>Cleaning, restoration and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/preserved-gown.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Restoration">Order this kit</button></div>
-  <div class="box"><span class="tagp">Keepsake</span><h3>Flower Girl / Christening</h3><p class="pr">$175</p><p class="for">For children's gowns.</p><ul><li>Cleaning and preservation</li><li>$2,000 insured value included</li></ul><img class="pimg" src="/img/christening-box.jpg" alt="" loading="lazy" width="300" height="400"><button type="button" class="pickbtn" data-pkg="Flower Girl">Order this kit</button></div>
+ <div class="ktabs" role="tablist" aria-label="Choose a kit"><button type="button" role="tab" id="t0" aria-controls="k0" aria-selected="true" tabindex="0"><b>Traditional</b><small>Most popular</small></button><button type="button" role="tab" id="t1" aria-controls="k1" aria-selected="false" tabindex="-1"><b>Celebrity</b><small>Couture &amp; luxury</small></button><button type="button" role="tab" id="t2" aria-controls="k2" aria-selected="false" tabindex="-1"><b>Clean-Only</b><small>Wear it again</small></button><button type="button" role="tab" id="t3" aria-controls="k3" aria-selected="false" tabindex="-1"><b>Restoration</b><small>For older gowns</small></button><button type="button" role="tab" id="t4" aria-controls="k4" aria-selected="false" tabindex="-1"><b>Flower Girl / Christening</b><small>Keepsake</small></button></div>
+ <div class="kcard">
+  <div class="kp" role="tabpanel" id="k0" aria-labelledby="t0">
+   <div class="kimg"><img src="/img/traditional-box.jpg" alt="Traditional Kit" loading="lazy" width="300" height="400"></div>
+   <div class="kinfo">
+    <span class="kbadge">Most popular</span><h3>Traditional Kit</h3>
+    <p class="perfect"><b>Perfect for:</b> Gowns less than 20 years old and originally purchased for under $2,000.</p>
+    <ul class="kf"><li>Cleaning and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li><li>Prepaid shipping included</li></ul>
+    <p class="kprice">360</p>
+    <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Traditional">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
+    <p class="kalt">Did your dress cost more than $2,000? <a href="#" class="kjump" data-to="1">See the Celebrity Kit &rarr;</a></p>
+   </div>
+  </div>
+  <div class="kp" role="tabpanel" id="k1" aria-labelledby="t1" hidden>
+   <div class="kimg"><img src="/img/celebrity-box.jpg" alt="Celebrity Kit" loading="lazy" width="300" height="400"></div>
+   <div class="kinfo">
+    <h3>Celebrity Kit</h3>
+    <p class="perfect"><b>Perfect for:</b> Higher-value and designer gowns.</p>
+    <ul class="kf"><li>Premium cleaning and preservation</li><li>$3,000 insured value included</li><li>100 Year Certificate of Guarantee</li><li>Prepaid shipping included</li></ul>
+    <p class="kprice">450</p>
+    <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Celebrity">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
+    <p class="kalt">Gown under $2,000? <a href="#" class="kjump" data-to="0">See the Traditional Kit &rarr;</a></p>
+   </div>
+  </div>
+  <div class="kp" role="tabpanel" id="k2" aria-labelledby="t2" hidden>
+   <div class="kimg"><img src="/img/kit-front.jpg" alt="Clean-Only Kit" loading="lazy" width="300" height="400"></div>
+   <div class="kinfo">
+    <h3>Clean-Only Kit</h3>
+    <p class="perfect"><b>Perfect for:</b> Gowns you want cleaned and returned ready to wear. Add preservation for +$100.</p>
+    <ul class="kf"><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li><li>Prepaid shipping included</li></ul>
+    <p class="kprice">260</p>
+    <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Clean Only - $260">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
+    <p class="kalt">Want it preserved too? <a href="#" class="kjump" data-to="0">See the Traditional Kit &rarr;</a></p>
+   </div>
+  </div>
+  <div class="kp" role="tabpanel" id="k3" aria-labelledby="t3" hidden>
+   <div class="kimg"><img src="/img/preserved-gown.jpg" alt="Restoration Kit" loading="lazy" width="300" height="400"></div>
+   <div class="kinfo">
+    <h3>Restoration Kit</h3>
+    <p class="perfect"><b>Perfect for:</b> Gowns 20 years or older, or with yellowing.</p>
+    <ul class="kf"><li>Cleaning, restoration and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul>
+    <p class="kprice">460</p>
+    <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Restoration">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
+    <p class="kalt">Gown less than 20 years old? <a href="#" class="kjump" data-to="0">See the Traditional Kit &rarr;</a></p>
+   </div>
+  </div>
+  <div class="kp" role="tabpanel" id="k4" aria-labelledby="t4" hidden>
+   <div class="kimg"><img src="/img/christening-box.jpg" alt="Flower Girl / Christening Kit" loading="lazy" width="300" height="400"></div>
+   <div class="kinfo">
+    <h3>Flower Girl / Christening Kit</h3>
+    <p class="perfect"><b>Perfect for:</b> Children's gowns.</p>
+    <ul class="kf"><li>Cleaning and preservation</li><li>$2,000 insured value included</li><li>100 Year Certificate of Guarantee</li></ul>
+    <p class="kprice">175</p>
+    <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Flower Girl">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
+    <p class="kalt">Looking for a bridal gown? <a href="#" class="kjump" data-to="0">See the Traditional Kit &rarr;</a></p>
+   </div>
+  </div>
  </div>
  <p class="note">Prices are before sales tax. Add-ons such as extra insured value, shoes, slip and photo documentation are in the order form.</p>
 
@@ -240,6 +306,10 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 <script>
 (function(){
  var f=document.getElementById('pf'),m=document.getElementById('msg'),b=f.querySelector('button.go'),tot=document.getElementById('tot');
+ var tabs=[].slice.call(document.querySelectorAll('.ktabs button')),panels=[].slice.call(document.querySelectorAll('.kp'));
+ function pick(i,focus){tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;panels[j].hidden=j!==i;});if(focus)tabs[i].focus();}
+ tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i);});t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;if(n>=0&&n<tabs.length){e.preventDefault();pick(n,true);}});});
+ document.querySelectorAll('.kjump').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pick(+a.getAttribute('data-to'));});});
  var SHIP=0,WORKER='https://custom-cleaners-orders.eicctexas.workers.dev';
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
