@@ -73,6 +73,26 @@ export function buildOrder(d) {
 
 export default {
   async fetch(req, env) {
+    if (new URL(req.url).pathname === '/track') {
+      if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors(req) });
+      if (req.method !== 'POST' || !ORIGINS.includes(req.headers.get('Origin'))) return json(req, { error: 'bad' }, 403);
+      let t;
+      try { t = await req.json(); } catch (e) { return json(req, { error: 'json' }, 400); }
+      const sn = String(t.serial || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 20);
+      if (sn.length < 4) return json(req, { error: 'serial' }, 400);
+      try {
+        const r = await fetch('https://www.gownpreservation.com/gown-status-2/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': UA }, body: 'OrderNumber=' + encodeURIComponent(sn) });
+        const h = await r.text();
+        const i = h.indexOf('<div id="gown-status-results">');
+        if (i < 0) return json(req, { error: 'none' }, 502);
+        let depth = 0, j = h.length;
+        const re = /<\/?div\b[^>]*>/g;
+        re.lastIndex = i;
+        let x;
+        while ((x = re.exec(h))) { depth += x[0][1] === '/' ? -1 : 1; if (depth === 0) { j = re.lastIndex; break; } }
+        return json(req, { html: h.slice(i, j).slice(0, 20000) });
+      } catch (e) { return json(req, { error: 'track' }, 502); }
+    }
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors(req) });
     if (req.method !== 'POST') return json(req, { error: 'method' }, 405);
     if (!ORIGINS.includes(req.headers.get('Origin'))) return json(req, { error: 'origin' }, 403);

@@ -221,15 +221,34 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   <p style="margin:0 0 .6rem">Please enter the serial number from your order form.</p>
   <p class="note" style="margin:0 0 1rem"><b>Note:</b> don&rsquo;t use the &ldquo;-&rdquo; between the letters and the numbers. Examples: WG12345678, KP12345678 or DS12345678.</p>
   <p class="note" style="margin:0 0 1rem">Please allow up to <b>2 weeks</b> after your gown is received for it to be entered into GownTracker&trade;.</p>
-  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status-2/#gown-status-results" method="post" target="gtframe">
+  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status-2/#gown-status-results" method="post">
    <input type="text" name="OrderNumber" placeholder="Enter your serial number, e.g. WG12345678" aria-label="Serial number from your order form" required autocomplete="off">
    <button type="submit" class="go" aria-label="Track my gown">Track</button>
   </form>
-  <iframe name="gtframe" id="gtframe" title="GownTracker results" hidden style="width:100%;height:620px;border:1px solid var(--line);border-radius:10px;margin-top:1rem;background:#fff"></iframe>
-  <p class="note" id="gtnote" hidden style="margin:.8rem 0 0">Results not showing? <a href="https://www.gownpreservation.com/gown-status-2/" target="_blank" rel="noopener">Open GownTracker in a new tab</a>.</p>
+  <div id="gtres" aria-live="polite" hidden></div>
  </div>
- <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}</style>
- <script>document.getElementById('gt').addEventListener('submit',function(){document.getElementById('gtframe').hidden=false;document.getElementById('gtnote').hidden=false;});</script>
+ <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}#gtres{margin-top:1.2rem}#gtres h2{font-family:var(--serif);color:var(--ink);font-size:1.3rem;margin:0 0 .5rem}#gtres p{margin:0 0 .8rem}#gtres .gown-status-missing{background:var(--steam);border-radius:8px;padding:.7rem .9rem}</style>
+ <script>
+(function(){
+ var f=document.getElementById('gt'),o=document.getElementById('gtres'),W='https://custom-cleaners-orders.eicctexas.workers.dev/track';
+ function clean(html){var d=new DOMParser().parseFromString(html,'text/html'),w=document.createElement('div');
+  d.body.querySelectorAll('script,style,iframe,form,img,link,object,embed,input,button,svg').forEach(function(n){n.remove();});
+  d.body.querySelectorAll('*').forEach(function(n){[].slice.call(n.attributes).forEach(function(a){n.removeAttribute(a.name);});});
+  w.innerHTML=d.body.innerHTML;return w;}
+ function msg(t){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.textContent=t;o.appendChild(p);}
+ f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=f.OrderNumber.value.replace(/[^A-Za-z0-9]/g,'');
+  if(v.length<4){msg('Please enter the serial number from your order form, without the dash.');return;}
+  var b=f.querySelector('button');b.disabled=true;msg('Checking your gown status...');
+  fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({serial:v})})
+  .then(function(r){return r.ok?r.json():Promise.reject();})
+  .then(function(j){o.innerHTML='';o.appendChild(clean(j.html));})
+  .catch(function(){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.appendChild(document.createTextNode('We could not check the status right now. '));var a=document.createElement('a');a.href='https://www.gownpreservation.com/gown-status-2/';a.target='_blank';a.rel='noopener';a.textContent='Open GownTracker in a new tab';p.appendChild(a);o.appendChild(p);})
+  .then(function(){b.disabled=false;});
+ });
+})();
+</script>
  <h2 class="s">Preserved gowns</h2>
  <div class="gal">
   <img src="/img/preserved-gowns.jpg" alt="Several preserved gowns in Wedding Gown Preservation Co. boxes" loading="lazy" width="360" height="480">
