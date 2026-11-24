@@ -9,7 +9,7 @@ const PACKAGES = {
   'Clean Only - $260': ['Wedding Gown Cleaning Only', 26000],
   'Clean Only + Preservation - $360': ['Wedding Gown Clean Only + Preservation Kit', 36000],
   'Traditional Cleaning + Preservation - $360': ['Traditional Wedding Gown Preservation Kit', 36000],
-  'Celebrity Cleaning + Preservation - $450': ['Celebrity Wedding Gown Preservation Kit', 45000],
+  'Celebrity Cleaning + Preservation - $435': ['Celebrity Wedding Gown Preservation Kit', 43500],
   'Restoration - $460': ['Wedding Gown Restoration Kit', 46000],
   'Flower Girl / Christening - $175': ['Flower Girl / Christening Gown Preservation Kit', 17500],
 };
