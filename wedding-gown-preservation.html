@@ -114,6 +114,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 .kimg,.hcimg{background:radial-gradient(ellipse 42% 6% at 50% 92%,rgba(10,26,122,.22),transparent),linear-gradient(115deg,rgba(255,255,255,.6) 0 16%,transparent 16% 28%,rgba(255,255,255,.4) 28% 36%,transparent 36%),radial-gradient(circle at 30% 18%,#fff 0,#eaeefb 50%,#d9e1f6 100%);border-radius:12px;padding:1.2rem;align-self:start}
 .kimg{border-right:0!important;padding-right:1.2rem!important}.kimg img,.hcimg img{mix-blend-mode:multiply;border-radius:0!important}
 .kimg img.nb,.hcimg img.nb{mix-blend-mode:normal;border-radius:8px!important}
+.promo{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap;background:#fff8d9;border:1px solid #ecd25a;border-left:6px solid var(--tag);border-radius:12px;padding:.8rem 1.1rem;margin:0 0 1.2rem}.promo b{font-family:var(--serif);font-size:1.2rem;color:var(--ink)}.promo span{flex:1 1 260px}.credit{background:#fff8d9;border-radius:8px;padding:.6rem .8rem}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -138,6 +139,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
     <li>Top rated Wedding Gown Preservation Co. authorized retailer</li>
     <li>Removes visible and invisible wedding day stains and yellowing</li>
     <li>Guaranteed not to yellow for at least 100 years</li>
+    <li>$25 in-store cleaning credit with your gown order</li>
     <li>Track your dress every step of the way, with peace of mind included</li>
    </ul>
    <a class="btn" href="#packages">Preserve my dress</a> <a class="btn alt2" href="#why">Why preserve?</a>
@@ -147,6 +149,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
 
  <h2 class="s" id="packages" style="margin-bottom:.2rem">Order Your Wedding Dress Preservation, Restoration, or Clean-Only Kit</h2>
  <p class="arr" style="margin:0 0 1.2rem;font-family:var(--serif);font-style:italic;letter-spacing:.04em;color:#7a0a12;font-size:1.15rem">Arrives in Just 3&ndash;5 Days</p>
+ <div class="promo"><b>$25 in-store cleaning credit</b><span>Use Custom Cleaners for your wedding gown care and receive a $25 credit toward cleaning at our store.</span></div>
  <section class="hmc" id="hmc" aria-label="Help me choose a kit">
   <button type="button" class="hopen" id="hopen" aria-expanded="false">Not sure which kit? Help me choose</button>
   <div class="hbody" id="hbody" hidden>
@@ -369,6 +372,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  <section id="done" class="done" hidden tabindex="-1">
   <h3>Order received. One more step: pay</h3>
   <p>Order number <b id="on"></b></p>
+  <p class="credit"><b>Your $25 in-store cleaning credit:</b> mention your order number at Custom Cleaners to use it on your regular cleaning.</p>
   <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
@@ -424,7 +428,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   .then(function(w){
    var n=(w&&w.ok&&w.orderNumber)||('G'+Date.now().toString(36).toUpperCase().slice(-6));
    var link=(w&&w.ok&&w.paymentUrl)||'';
-   d['Order Number']=n;d['Order Total']='$'+t+' (before sales tax)';
+   d['Order Number']=n;d['Store Credit']='$25 in-store cleaning credit promised to this customer';d['Order Total']='$'+t+' (before sales tax)';
    d['Invoice Created']=w&&w.ok?('Yes. Invoice '+w.invoiceId+(link?'':' (pay link pending)')):'NO - create invoice manually';
    if(link)d['Pay Link']=link;
    d._subject='Gown Order '+n+' - '+d['First Name']+' '+d['Last Name']+' - $'+t;
