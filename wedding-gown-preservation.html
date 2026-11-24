@@ -128,8 +128,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  <h2 class="s">How it works</h2>
  <ol class="steps">
   <li><b>Order your kit</b>Pick a package and pay securely online.</li>
-  <li><b>Bring us your gown</b>Drop it at either Baytown location, or ask for free pickup.</li>
-  <li><b>We pack and ship it</b>We prepare your gown in its kit and send it to Wedding Gown Preservation Co.</li>
+  <li><b>Choose how your gown gets there</b>Option 1: we mail the kit to you, you follow the instructions and send your gown straight to Wedding Gown Preservation Co. Option 2: drop your gown off at our store and we pack and ship it for you.</li>
   <li><b>Cleaned and preserved</b>Your gown is cleaned and preserved at their facility.</li>
   <li><b>Returned to you</b>Back to you in 4&ndash;14 weeks from the day they receive it.</li>
  </ol>
@@ -171,7 +170,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  <details><summary>Do accessories change the guarantee?</summary><p>Sashes, belts, beads or sequins added or altered by anyone other than the original manufacturer void any guarantee. <a href="/wedding-gown-release">Read the full release</a>.</p></details>
 
  <h2 class="s" id="request">Order your kit</h2>
- <p class="note">Choose your package, then bring your gown to either Custom Cleaners location or ask for free pickup. We pack it in your kit and send it to Wedding Gown Preservation Co.</p>
+ <p class="note">Choose your package and one of two options. Option 1: we mail the kit to you and you send your gown to Wedding Gown Preservation Co. yourself. Option 2: drop your gown off at our store and we pack and ship it.</p>
  <form id="pf" novalidate>
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
   <fieldset><legend>Name <span class="req" aria-hidden="true">*</span></legend>
@@ -183,15 +182,15 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   <fieldset><legend>Email <span class="req" aria-hidden="true">*</span></legend>
    <input type="email" name="Email" autocomplete="email" required aria-label="Email">
   </fieldset>
-  <fieldset><legend>Address (needed for pickup and return)</legend>
+  <fieldset><legend>Address (required if we mail you the kit, also used for return)</legend>
    <div class="full"><input type="text" name="Street Address" placeholder="Street Address" autocomplete="address-line1" aria-label="Street address"></div>
    <div class="full"><input type="text" name="Street Address Line 2" placeholder="Apartment, suite, unit" autocomplete="address-line2" aria-label="Address line 2"></div>
    <div class="row"><input type="text" name="City" placeholder="City" autocomplete="address-level2" aria-label="City"><input type="text" name="State" placeholder="State" autocomplete="address-level1" aria-label="State"></div>
    <div class="row"><input type="text" name="Zip" placeholder="Zip Code" autocomplete="postal-code" inputmode="numeric" aria-label="Zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
   </fieldset>
-  <fieldset><legend>How will your gown get to us? <span class="req" aria-hidden="true">*</span></legend>
-   <label class="opt"><input type="radio" name="Gown Handoff" value="I will bring it to Custom Cleaners" required><span>I will bring it to Custom Cleaners</span></label>
-   <label class="opt"><input type="radio" name="Gown Handoff" value="Please arrange free pickup"><span>Please arrange free pickup</span></label>
+  <fieldset><legend>Choose an option <span class="req" aria-hidden="true">*</span></legend>
+   <label class="opt"><input type="radio" name="Gown Handoff" value="Option 1: Mail me the kit" required><span><b>Option 1:</b> Mail me the kit. I follow the instructions and send my gown to Wedding Gown Preservation Co. myself.</span></label>
+   <label class="opt"><input type="radio" name="Gown Handoff" value="Option 2: I will drop off my gown at the store"><span><b>Option 2:</b> I will drop off my gown at the store. Custom Cleaners packs and ships it.</span></label>
   </fieldset>
   <fieldset><legend>Package <span class="req" aria-hidden="true">*</span></legend>
    <select name="Package" id="pkg" required aria-label="Package">
@@ -234,7 +233,7 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
   <p>Order number <b id="on"></b></p>
   <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
-  <p class="note">We will ship your kit and instructions once your payment is received. Questions? Call (832) 323-3745 or (281) 783-6669.</p>
+  <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </section>
 </main>
 <footer><p>Copyright 2026 by Evrest, Inc</p></footer>
@@ -245,7 +244,8 @@ a.alt2{background:transparent;color:#fff;border:2px solid #fff}
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
  function show(){tot.textContent='$'+total();}
  document.querySelectorAll('.pickbtn').forEach(function(bt){bt.addEventListener('click',function(){var k=bt.getAttribute('data-pkg'),p=document.getElementById('pkg');for(var i=0;i<p.options.length;i++){if(p.options[i].text.indexOf(k)===0){p.selectedIndex=i;break;}}show();document.getElementById('request').scrollIntoView({behavior:'smooth'});});});
- f.addEventListener('change',show);f.addEventListener('input',show);show();
+ function need(){var o=f.querySelector('input[name="Gown Handoff"]:checked'),m1=o&&o.value.indexOf('Option 1')===0;['Street Address','City','State','Zip'].forEach(function(n){f.querySelector('[name="'+n+'"]').required=m1;});}
+ f.addEventListener('change',function(){show();need();});f.addEventListener('input',show);show();
  f.addEventListener('submit',function(e){
   e.preventDefault();
   if(!f.checkValidity()){f.reportValidity();return;}

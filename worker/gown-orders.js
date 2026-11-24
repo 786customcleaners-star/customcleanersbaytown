@@ -21,7 +21,7 @@ const DECLARED = {
 };
 const ADDONS = ['Silk flowers', 'Shoes', 'Slip', 'Accessories box', 'Gown overlay', 'Detachable skirt', 'Photo documentation'];
 const TAX_RATE = 8.25; // percent, applied to taxable lines (kits and add-ons)
-const HANDOFF = ['I will bring it to Custom Cleaners', 'Please arrange free pickup'];
+const HANDOFF = ['Option 1: Mail me the kit', 'Option 2: I will drop off my gown at the store'];
 
 function cors(req) {
   const o = req.headers.get('Origin');
@@ -95,7 +95,7 @@ export default {
     const notes = clean(d.notes, 150);
     const lines = ['Order date: ' + nice(orderDate), 'Order #: ' + orderNumber, 'Due date: ' + nice(dueDate), '',
       'Customer: ' + first + ' ' + last, 'Phone: ' + phoneFmt, 'Email: ' + email, 'Address: ' + address, '',
-      'Gown handoff: ' + (d.handoff === HANDOFF[1] ? 'Free pickup requested' : 'Customer will bring gown to Custom Cleaners')];
+      'Gown handoff: ' + (d.handoff === HANDOFF[0] ? 'Option 1 - mail kit to customer; customer ships gown' : 'Option 2 - customer drops off gown; we pack and ship')];
     if (notes) lines.push('Notes: ' + notes);
     const thanks = ['', 'Thank you for choosing Custom Cleaners. Questions? Call (832) 323-3745.'];
     let memo = lines.join('\n');
