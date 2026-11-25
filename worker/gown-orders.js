@@ -122,7 +122,7 @@ export default {
       let paymentUrl = null, total = null, num = null;
       for (let i = 0; i < 8 && !paymentUrl; i++) {
         if (i) await new Promise(r => setTimeout(r, 800));
-        if (i === 3) await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {}); // only if no pay link yet
+        if (i === 0) await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {}); // the pay link only exists once the invoice is sent
         const cur = await api(env, token, 'GET', '/invoices/' + inv.id);
         paymentUrl = cur.paymentUrl || null;
         if (cur.total != null) total = cur.total;
