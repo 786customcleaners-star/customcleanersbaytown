@@ -146,7 +146,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  </div>
 </header>
 <nav class="snav" aria-label="Page sections"><div class="snavin">
- <a href="#packages">Kits</a><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#track">Track your gown</a><a href="#gallery">Photos &amp; videos</a><a href="#faq">Questions</a><a href="#request" class="snavo">Order</a>
+ <a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#packages">Kits</a><a href="#track">Track your gown</a><a href="#faq">FAQ</a><a href="#request" class="snavo">Order kit</a>
 </div></nav>
 <main>
  <section class="hero2">
@@ -424,7 +424,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  Restoration:{i:3,n:'Restoration Kit',img:'preserved-gown.jpg',price:'460',perf:'Perfect for: Gowns 20 years or older, or with yellowing.',f:['Cleaning, restoration and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'For older gowns',t:'Gowns 20 years or older need restoration to treat yellowing and aging, so the Restoration Kit is the right choice.'},
  Child:{i:4,n:'Flower Girl / Christening Kit',img:'christening-box.jpg',price:'175',perf:'Perfect for: Children\'s gowns.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'Keepsake',t:'The Flower Girl / Christening Kit is made for smaller heirloom gowns.'}};
  (function(){var L=[].slice.call(document.querySelectorAll('.snav a:not(.snavo)')),T=L.map(function(a){return document.querySelector(a.getAttribute('href'));});
-  function mark(){var y=window.scrollY+120,k=-1;T.forEach(function(t,i){if(t&&t.getBoundingClientRect().top+window.scrollY<=y)k=i;});L.forEach(function(a,i){a.classList.toggle('on',i===k);});
+  function mark(){var y=window.scrollY+120,k=-1,best=-1e9;T.forEach(function(t,i){var tp=t?t.getBoundingClientRect().top+window.scrollY:1e9;if(tp<=y&&tp>best){best=tp;k=i;}});L.forEach(function(a,i){a.classList.toggle('on',i===k);});
    var on=L[k];if(on){var c=on.parentNode;c.scrollTo({left:on.offsetLeft-c.clientWidth/2+on.clientWidth/2,behavior:'smooth'});}}
   window.addEventListener('scroll',function(){clearTimeout(mark.t);mark.t=setTimeout(mark,60);},{passive:true});mark();})();
  var Q=[{t:'How old is your wedding dress?',w:'Older gowns often have yellowing and fabric aging that need restoration instead of standard cleaning.',o:[['new','Less than 20 years old','Stored or worn within the last 20 years.','gown'],['old','20 years or older','More than 20 years old, an heirloom dress, or a vintage piece passed down through your family.','clock']]},
