@@ -446,6 +446,7 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
   ls.addEventListener('click',function(ev){if(ev.target.closest('a'))cl();});
   document.addEventListener('click',function(ev){if(!ev.target.closest('.snav'))cl();});
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape')cl();});})();
+ (function(){var bb=document.querySelector('#pf button.go');window.addEventListener('pageshow',function(){if(bb)bb.classList.remove('loading');});})();
  var Q=[{t:'How old is your wedding dress?',w:'Older gowns often have yellowing and fabric aging that need restoration instead of standard cleaning.',o:[['new','Less than 20 years old','Stored or worn within the last 20 years.','gown'],['old','20 years or older','More than 20 years old, an heirloom dress, or a vintage piece passed down through your family.','clock']]},
  {t:'What was the original price of your wedding dress?',w:'The Traditional Kit includes $2,000 of insured value and the Celebrity Kit includes $3,000. The cleaning and preservation process is the same.',o:[['low','Under $2,000','Most wedding dresses fall here. You will receive the Traditional Kit with $2,000 insured value.','tag'],['high','Over $2,000 (couture, silk, designer)','The right fit for high-end designer or couture dresses, with $3,000 insured value.','gem']]},
  {t:'And finally, what do you plan to do with your dress?',w:'Preservation protects your gown for long-term storage. Clean-only returns it ready to wear.',o:[['keep','Preserve as a keepsake or pass on to a daughter or family member','Cleaned and sealed in a preservation box with our 100 Year Certificate of Guarantee.','box'],['wear','Cleaned for wearing or selling in the next year','Professional cleaning so the dress is fresh and ready to wear or sell.','gown']]}];
@@ -501,7 +502,7 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
       f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){var v=+c.getAttribute('data-p');rows.push([c.value.replace(/ \(\+\$\d+\)$/,''),v]);tx+=v;});
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
       inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;document.getElementById('mailed').hidden=false;}
-     f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
+     b.classList.remove('loading');f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
     }else{throw new Error('fail');}
    });
   })
