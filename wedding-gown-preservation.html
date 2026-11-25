@@ -230,7 +230,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
    <div class="kimg"><img class="nb" src="/img/kit-front.jpg" alt="Clean-Only Kit" loading="lazy" width="300" height="400"></div>
    <div class="kinfo">
     <h3>Clean-Only Kit</h3>
-    <p class="perfect"><b>Perfect for:</b> Gowns you want cleaned and returned ready to wear. Add preservation for +$100.</p>
+    <p class="perfect"><b>Perfect for:</b> Gowns you want cleaned and returned ready to wear.</p>
     <ul class="kf"><li>Professional gown cleaning</li><li>Ready in 2&ndash;3 weeks</li><li>Prepaid shipping included</li></ul>
     <p class="kprice">260</p>
     <p class="kact"><button type="button" class="pickbtn korder" data-pkg="Clean Only - $260">Customize &amp; Order</button> <span class="kship">&#128666; Free shipping included</span></p>
@@ -343,7 +343,6 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  </div>
 
  <h2 class="s" id="request">Order your kit</h2>
- <p class="note">Choose your package and one of two options. Option 1: we mail you the kit and you ship your gown with the prepaid label. Option 2: drop your gown off at our store and we pack and ship it.</p>
  <form id="pf" novalidate>
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
   <fieldset class="span2"><legend>Name <span class="req" aria-hidden="true">*</span></legend>
@@ -362,7 +361,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
    <div class="row"><input type="text" name="Zip" placeholder="Zip Code" autocomplete="postal-code" inputmode="numeric" aria-label="Zip code"><select name="Country" aria-label="Country"><option>United States</option></select></div>
   </fieldset>
   <fieldset class="optg"><legend>Choose an option <span class="req" aria-hidden="true">*</span></legend>
-   <label class="opt"><input type="radio" name="Gown Handoff" value="Option 1: Mail me the kit" required><span><b>Option 1:</b> Mail me the kit (free shipping to me). I follow the instructions and ship my gown with the prepaid label.</span></label>
+   <label class="opt"><input type="radio" name="Gown Handoff" value="Option 1: Mail me the kit" required><span><b>Option 1:</b> Mail me the kit. I follow the instructions and send my gown to Wedding Gown Preservation Co. with the prepaid label.</span></label>
    <label class="opt"><input type="radio" name="Gown Handoff" value="Option 2: I will drop off my gown at the store"><span><b>Option 2:</b> I will drop off my gown at the store. Custom Cleaners packs and ships it.</span></label>
   </fieldset>
   <fieldset><legend>Package <span class="req" aria-hidden="true">*</span></legend>
@@ -421,7 +420,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  var H={
  Traditional:{i:0,n:'Traditional Kit',img:'traditional-box.jpg',price:'360',perf:'Perfect for: Gowns less than 20 years old and originally purchased for under $2,000.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee','Prepaid shipping included'],badge:'Most popular',t:'Your gown is under 20 years old and cost under $2,000, so the Traditional Kit is the ideal fit for its age and value.'},
  Celebrity:{i:1,n:'Celebrity Kit',img:'celebrity-box.jpg',price:'435',perf:'Perfect for: Higher-value and designer gowns.',f:['Premium cleaning and preservation','$3,000 insured value included','100 Year Certificate of Guarantee','Prepaid shipping included'],badge:'Couture & luxury',t:'Your gown is under 20 years old and was a higher-value or designer gown, so the Celebrity Kit adds the extra insured value it deserves.'},
- Clean:{i:2,n:'Clean-Only Kit',img:'kit-front.jpg',price:'260',perf:'Perfect for: Gowns you want cleaned and returned ready to wear. Add preservation for +$100.',f:['Professional gown cleaning','Ready in 2\u20133 weeks','Prepaid shipping included'],badge:'Wear it again',t:'Since you plan to wear or use the gown again soon, the Clean-Only Kit cleans it and returns it ready to wear.'},
+ Clean:{i:2,n:'Clean-Only Kit',img:'kit-front.jpg',price:'260',perf:'Perfect for: Gowns you want cleaned and returned ready to wear.',f:['Professional gown cleaning','Ready in 2\u20133 weeks','Prepaid shipping included'],badge:'Wear it again',t:'Since you plan to wear or use the gown again soon, the Clean-Only Kit cleans it and returns it ready to wear.'},
  Restoration:{i:3,n:'Restoration Kit',img:'preserved-gown.jpg',price:'460',perf:'Perfect for: Gowns 20 years or older, or with yellowing.',f:['Cleaning, restoration and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'For older gowns',t:'Gowns 20 years or older need restoration to treat yellowing and aging, so the Restoration Kit is the right choice.'},
  Child:{i:4,n:'Flower Girl / Christening Kit',img:'christening-box.jpg',price:'175',perf:'Perfect for: Children\'s gowns.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'Keepsake',t:'The Flower Girl / Christening Kit is made for smaller heirloom gowns.'}};
  (function(){var L=[].slice.call(document.querySelectorAll('.snav a:not(.snavo)')),T=L.map(function(a){return document.querySelector(a.getAttribute('href'));});
