@@ -383,11 +383,6 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </dialog>
- <div class="band trkband">
- <h2 class="s" id="track">Check your gown status</h2>
- <p class="trkl" style="text-align:center;margin:0 auto 1rem">Have you sent your gown to us? See where it is in the process.</p>
- <p style="text-align:center"><button type="button" class="go" id="opentrk">Check gown status</button></p>
- </div>
  <dialog id="trkdlg" aria-label="Check your gown status">
  <button type="button" class="dclose" id="closetrk" aria-label="Close">&times;</button>
  <h2 class="dh">Check your gown status</h2>
@@ -516,7 +511,7 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
 })();
 
 (function(){var d=document.getElementById('trkdlg');if(!d)return;function op(){if(d.showModal)d.showModal();else d.setAttribute('open','');var i=document.querySelector('#gt input');if(i)setTimeout(function(){i.focus();},50);}
- document.getElementById('opentrk').addEventListener('click',op);document.getElementById('closetrk').addEventListener('click',function(){d.close();});
+ document.getElementById('closetrk').addEventListener('click',function(){d.close();});
  d.addEventListener('click',function(e){if(e.target===d)d.close();});
  document.querySelectorAll('a[href="#track"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();op();});});})();
 </script>
