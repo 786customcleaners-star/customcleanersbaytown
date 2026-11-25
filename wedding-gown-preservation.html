@@ -488,6 +488,7 @@ button.go.done-btn,button.go.done-btn:hover{background:#0a7a3a;color:#fff}button
    b.classList.remove('loading');if(w&&w.ok)b.textContent='Invoice created';
    var n=(w&&w.ok&&w.orderNumber)||('G'+Date.now().toString(36).toUpperCase().slice(-6));
    var link=(w&&w.ok&&w.paymentUrl)||'';
+   d['Gown Handoff']=(d['Gown Handoff']||'').indexOf('Option 1')===0?'Mail in Kit':'Store Drop-off Kit';
    d['Order Number']=n;d['Store Credit']='$25 in-store cleaning credit promised to this customer';d['Order Total']='$'+t+' (before sales tax)';
    d['Invoice Created']=w&&w.ok?('Yes. Invoice '+w.invoiceId+(link?'':' (pay link pending)')):'NO - create invoice manually';
    if(link)d['Pay Link']=link;
