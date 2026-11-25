@@ -162,7 +162,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
 </header>
 <nav class="snav" aria-label="Page sections"><div class="snavin">
  <button type="button" class="snavt" id="snavt" aria-expanded="false" aria-controls="snavl"><span class="bars" aria-hidden="true"></span><span id="snavcur">Menu</span></button>
- <div class="snavl" id="snavl"><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#packages">Kits</a><a href="#track">Track your gown</a><a href="#faq">FAQ</a></div>
+ <div class="snavl" id="snavl"><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#packages">Kits</a><a href="#faq">FAQ</a><a href="#track">Track your gown</a></div>
  <a href="#request" class="snavo">Order kit</a>
 </div></nav>
 <main>
@@ -301,40 +301,6 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
    <p class="vlinks"><a href="https://www.youtube.com/watch?v=dJygj6kKvVk" target="_blank" rel="noopener">&#9658; Watch the kit video</a><a href="https://www.youtube.com/watch?v=mdEotsrmi8U" target="_blank" rel="noopener">&#9658; Watch the process video</a></p>
   </div>
  </div>
- <div class="band">
- <h2 class="s" id="track">Check your gown status</h2>
- <div class="card trk">
-  <p class="trkl">Enter the serial number without dash (-) from your order form.</p>
-  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status-2/#gown-status-results" method="post">
-   <input type="text" name="OrderNumber" placeholder="Serial number, e.g. WG12345678" aria-label="Serial number from your order form" required autocomplete="off">
-   <button type="submit" class="go" aria-label="Track my gown">Track</button>
-  </form>
-  <div id="gtres" aria-live="polite" hidden></div>
-  <p class="note trkn">Please allow up to <b>2 weeks</b> after your gown is received for it to appear in GownTracker&trade;.</p>
- </div>
- </div>
- <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}#gtres{margin-top:1.2rem}#gtres h2{font-family:var(--serif);color:var(--ink);font-size:1.3rem;margin:0 0 .5rem}#gtres p{margin:0 0 .8rem}#gtres .gown-status-missing{background:var(--steam);border-radius:8px;padding:.7rem .9rem}</style>
- <script>
-(function(){
- var f=document.getElementById('gt'),o=document.getElementById('gtres'),W='https://custom-cleaners-orders.eicctexas.workers.dev/track';
- function clean(html){var d=new DOMParser().parseFromString(html,'text/html'),w=document.createElement('div');
-  d.body.querySelectorAll('script,style,iframe,form,img,link,object,embed,input,button,svg').forEach(function(n){n.remove();});
-  d.body.querySelectorAll('*').forEach(function(n){[].slice.call(n.attributes).forEach(function(a){n.removeAttribute(a.name);});});
-  w.innerHTML=d.body.innerHTML;return w;}
- function msg(t){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.textContent=t;o.appendChild(p);}
- f.addEventListener('submit',function(e){
-  e.preventDefault();
-  var v=f.OrderNumber.value.replace(/[^A-Za-z0-9]/g,'');
-  if(v.length<4){msg('Please enter the serial number from your order form, without the dash.');return;}
-  var b=f.querySelector('button');b.disabled=true;msg('Checking your gown status...');
-  fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({serial:v})})
-  .then(function(r){return r.ok?r.json():Promise.reject();})
-  .then(function(j){o.innerHTML='';o.appendChild(clean(j.html));})
-  .catch(function(){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.appendChild(document.createTextNode('We could not check the status right now. '));var a=document.createElement('a');a.href='https://www.gownpreservation.com/gown-status-2/';a.target='_blank';a.rel='noopener';a.textContent='Open GownTracker in a new tab';p.appendChild(a);o.appendChild(p);})
-  .then(function(){b.disabled=false;});
- });
-})();
-</script>
  <div class="band" id="faq">
  <h2 class="s">Questions</h2>
  <details><summary>Will every stain come out?</summary><p>Not always. Some stains cannot be removed completely without damaging the fabric. We note the condition of your gown when you bring it in.</p></details>
@@ -414,6 +380,40 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
   <p class="note" id="mailed" hidden>We also emailed this invoice to you.</p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </section>
+ <div class="band">
+ <h2 class="s" id="track">Check your gown status</h2>
+ <div class="card trk">
+  <p class="trkl">Enter the serial number without dash (-) from your order form.</p>
+  <form id="gt" class="gtf" action="https://www.gownpreservation.com/gown-status-2/#gown-status-results" method="post">
+   <input type="text" name="OrderNumber" placeholder="Serial number, e.g. WG12345678" aria-label="Serial number from your order form" required autocomplete="off">
+   <button type="submit" class="go" aria-label="Track my gown">Track</button>
+  </form>
+  <div id="gtres" aria-live="polite" hidden></div>
+  <p class="note trkn">Please allow up to <b>2 weeks</b> after your gown is received for it to appear in GownTracker&trade;.</p>
+ </div>
+ </div>
+ <style>.gtf{display:flex;gap:.6rem;background:none;border:0;padding:0;border-radius:0}.gtf input{flex:1}.gtf button{width:auto;white-space:nowrap}#gtres{margin-top:1.2rem}#gtres h2{font-family:var(--serif);color:var(--ink);font-size:1.3rem;margin:0 0 .5rem}#gtres p{margin:0 0 .8rem}#gtres .gown-status-missing{background:var(--steam);border-radius:8px;padding:.7rem .9rem}</style>
+ <script>
+(function(){
+ var f=document.getElementById('gt'),o=document.getElementById('gtres'),W='https://custom-cleaners-orders.eicctexas.workers.dev/track';
+ function clean(html){var d=new DOMParser().parseFromString(html,'text/html'),w=document.createElement('div');
+  d.body.querySelectorAll('script,style,iframe,form,img,link,object,embed,input,button,svg').forEach(function(n){n.remove();});
+  d.body.querySelectorAll('*').forEach(function(n){[].slice.call(n.attributes).forEach(function(a){n.removeAttribute(a.name);});});
+  w.innerHTML=d.body.innerHTML;return w;}
+ function msg(t){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.textContent=t;o.appendChild(p);}
+ f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=f.OrderNumber.value.replace(/[^A-Za-z0-9]/g,'');
+  if(v.length<4){msg('Please enter the serial number from your order form, without the dash.');return;}
+  var b=f.querySelector('button');b.disabled=true;msg('Checking your gown status...');
+  fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({serial:v})})
+  .then(function(r){return r.ok?r.json():Promise.reject();})
+  .then(function(j){o.innerHTML='';o.appendChild(clean(j.html));})
+  .catch(function(){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.appendChild(document.createTextNode('We could not check the status right now. '));var a=document.createElement('a');a.href='https://www.gownpreservation.com/gown-status-2/';a.target='_blank';a.rel='noopener';a.textContent='Open GownTracker in a new tab';p.appendChild(a);o.appendChild(p);})
+  .then(function(){b.disabled=false;});
+ });
+})();
+</script>
 </main>
 <footer><p>Copyright 2026 by Evrest, Inc</p></footer>
 <script>
