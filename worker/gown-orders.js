@@ -119,10 +119,10 @@ export default {
       let inv;
       try { inv = await api(env, token, 'POST', '/invoices', Object.assign({ dueAt: dueDate + 'T00:00:00Z' }, body)); }
       catch (e) { inv = await api(env, token, 'POST', '/invoices', body); }
-      await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {});
       let paymentUrl = null, total = null, num = null;
       for (let i = 0; i < 8 && !paymentUrl; i++) {
         if (i) await new Promise(r => setTimeout(r, 800));
+        if (i === 3) await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {}); // only if no pay link yet
         const cur = await api(env, token, 'GET', '/invoices/' + inv.id);
         paymentUrl = cur.paymentUrl || null;
         if (cur.total != null) total = cur.total;

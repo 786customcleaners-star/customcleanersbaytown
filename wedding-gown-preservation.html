@@ -378,7 +378,6 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
   <div id="inv" class="inv" hidden></div>
   <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
-  <p class="note" id="mailed" hidden>We also emailed this invoice to you.</p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </section>
  <div class="band trkband">
@@ -501,7 +500,7 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
       if(dvs.selectedIndex>0)rows.push(['Higher declared value ('+dvs.options[dvs.selectedIndex].text.replace(/ \(\+\$\d+\)$/,'')+')',+dvs.options[dvs.selectedIndex].getAttribute('data-p')]);
       f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){var v=+c.getAttribute('data-p');rows.push([c.value.replace(/ \(\+\$\d+\)$/,''),v]);tx+=v;});
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
-      inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;document.getElementById('mailed').hidden=false;}
+      inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;}
      b.classList.remove('loading');f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
     }else{throw new Error('fail');}
    });
