@@ -62,6 +62,8 @@ h2.s{font-family:var(--serif);color:var(--ink);font-size:1.6rem;margin:2.4rem 0 
 .steps li{background:#fff;border:1px solid var(--line);border-top:5px solid var(--tag);border-radius:12px;padding:1rem 1.1rem;counter-increment:s}
 .steps li:before{content:counter(s);display:inline-flex;width:2rem;height:2rem;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:700;margin-bottom:.5rem}
 .steps b{display:block;color:var(--ink)}
+.steps li:before{content:'Step 'counter(s);display:block;width:auto;height:auto;background:none;color:var(--ink2);border-radius:0;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0}.hi{display:inline-flex;width:3rem;height:3rem;align-items:center;justify-content:center;border-radius:50%;background:var(--steam);color:var(--ink);margin-bottom:.2rem}.hi svg{width:1.6rem;height:1.6rem}
+
 .pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
 .pk .box{background:#fff;border:1px solid var(--line);border-left:6px solid var(--tag);border-radius:12px;padding:1.2rem 1.3rem}
 .pk h3{margin:0 0 .3rem;font-family:var(--serif);color:var(--ink)}.pk .pr{font-weight:700;color:var(--ink2);margin:0 0 .6rem}.pk ul{margin:0;padding-left:1.2rem}
@@ -272,10 +274,10 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  <div class="band" id="how">
  <h2 class="s">How it works</h2>
  <ol class="steps">
-  <li><b>Order your kit</b>Pick a package and pay securely online.</li>
-  <li><b>Choose your option</b><span class="op"><em>Option 1</em> We mail you the kit. You ship your gown with the prepaid label.</span><span class="op"><em>Option 2</em> Drop it off at our store. We pack and ship it.</span></li>
-  <li><b>Cleaned and preserved</b>Your gown is professionally cleaned and preserved through our preservation program.</li>
-  <li><b>Returned to you</b>Back to you in 4&ndash;14 weeks from the day your gown is received.</li>
+  <li><span class="hi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2 10.5h10.5l2-7.5H6.5"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg></span><b>Order your kit</b>Pick a package and pay securely online.</li>
+  <li><span class="hi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></span><b>Choose your option</b><span class="op"><em>Option 1</em> We mail you the kit. You ship your gown with the prepaid label.</span><span class="op"><em>Option 2</em> Drop it off at our store. We pack and ship it.</span></li>
+  <li><span class="hi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span><b>Cleaned and preserved</b>Your gown is professionally cleaned and preserved through our preservation program.</li>
+  <li><span class="hi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M9.5 19v-5h5v5"/></svg></span><b>Returned to you</b>Back to you in 4&ndash;14 weeks from the day your gown is received.</li>
  </ol>
  </div>
 
@@ -373,12 +375,12 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
     <option data-p="175">Flower Girl / Christening - $175</option>
    </select>
   </fieldset>
-  <fieldset><legend>Declared value</legend>
+  <fieldset><legend>Declared value (coverage for loss or damage)</legend>
    <select name="Declared Value" id="dv" aria-label="Declared value">
     <option data-p="0" value="Included with package">Included with package ($2,000)</option>
-    <option data-p="50">$1,000 higher (+$50)</option>
-    <option data-p="100">$2,000 higher (+$100)</option>
-    <option data-p="150">$3,000 higher (+$150)</option>
+    <option data-p="50" value="$1,000 higher (+$50)">$3,000 total (+$50)</option>
+    <option data-p="100" value="$2,000 higher (+$100)">$4,000 total (+$100)</option>
+    <option data-p="150" value="$3,000 higher (+$150)">$5,000 total (+$150)</option>
    </select>
   </fieldset>
   <fieldset class="adds"><legend>Add-ons</legend>
@@ -444,7 +446,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
  document.getElementById('hgo').addEventListener('click',function(){pick(H[hsel].i);document.querySelector('.ktabs').scrollIntoView({behavior:'smooth'});});
  var SHIP=0,WORKER='https://custom-cleaners-orders.eicctexas.workers.dev';
  function total(){var t=0;f.querySelectorAll('#pkg,#dv').forEach(function(s){t+=+s.options[s.selectedIndex].getAttribute('data-p')||0;});f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){t+=+c.getAttribute('data-p');});return t?t+SHIP:0;}
- function show(){var pk=document.getElementById('pkg'),o=document.getElementById('dv').options[0];o.text='Included with package ('+(/Celebrity/.test(pk.value)?'$3,000':'$2,000')+')';tot.textContent='$'+total();}
+ function show(){var pk=document.getElementById('pkg'),o=document.getElementById('dv').options[0];var b=/Celebrity/.test(pk.value)?3:2,dd=document.getElementById('dv').options;dd[0].text='Included with package ($'+b+',000)';for(var q=1;q<4;q++)dd[q].text='$'+(b+q)+',000 total (+$'+[0,50,100,150][q]+')';tot.textContent='$'+total();}
  document.querySelectorAll('.pickbtn').forEach(function(bt){bt.addEventListener('click',function(){var k=bt.getAttribute('data-pkg'),p=document.getElementById('pkg');for(var i=0;i<p.options.length;i++){if(p.options[i].text.indexOf(k)===0){p.selectedIndex=i;break;}}show();document.getElementById('request').scrollIntoView({behavior:'smooth'});});});
  function need(){var o=f.querySelector('input[name="Gown Handoff"]:checked'),m1=o&&o.value.indexOf('Option 1')===0;['Street Address','City','State','Zip'].forEach(function(n){f.querySelector('[name="'+n+'"]').required=m1;});}
  f.addEventListener('change',function(){show();need();});f.addEventListener('input',show);show();
