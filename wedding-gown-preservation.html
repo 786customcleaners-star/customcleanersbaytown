@@ -144,6 +144,7 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
 @media(max-width:759px){.starb.mini.herostar{width:140px;height:140px;top:-1rem;right:.2rem}.starb.mini.herostar b{font-size:1.9rem}.starb.mini.herostar small{font-size:.7rem}}
 .hero2{background:none!important;border-radius:0!important}.hero2:before{content:'';position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:linear-gradient(135deg,var(--ink),var(--ink2));z-index:-1}
 @media(max-width:759px){.hbtns{display:flex;gap:.5rem;flex-wrap:nowrap}.hbtns .btn{flex:1 1 0;min-width:0;padding:.75rem .5rem;font-size:.92rem;text-align:center;white-space:normal;line-height:1.2;display:flex;align-items:center;justify-content:center;margin:0}}
+button.go.done-btn,button.go.done-btn:hover{background:#0a7a3a;color:#fff}button.go.done-btn::after{display:none!important}
 .snav a:hover{background:var(--steam)}.snav a.on{background:var(--ink);color:#fff}.snav a.snavo{background:#2f7d3b;color:#fff;margin-left:auto}.snav a.snavo:hover{background:#25652f}
 #packages,#why,#how,#inkit,#track,#gallery,#faq,#request{scroll-margin-top:64px}
 .vlinks{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}.vlinks a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1rem;border:2px solid var(--ink);border-radius:999px;color:var(--ink);font-weight:700;text-decoration:none;background:#fff}.vlinks a:hover{background:var(--steam)}
@@ -507,7 +508,7 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
       inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;}
      b.classList.remove('loading');var x=document.getElementById('done');
-     m.textContent='';b.type='button';b.disabled=false;b.textContent='View invoice & pay';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});
+     m.textContent='';b.type='button';b.disabled=false;b.classList.remove('loading');b.classList.add('done-btn');b.textContent='Invoice created';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});
      document.getElementById('closedone').addEventListener('click',function(){x.close();});
      if(x.showModal)x.showModal();else x.setAttribute('open','');
     }else{throw new Error('fail');}
