@@ -367,7 +367,6 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
    <select name="Package" id="pkg" required aria-label="Package">
     <option value="" data-p="0">Choose a package</option>
     <option data-p="260">Clean Only - $260</option>
-    <option data-p="360">Clean Only + Preservation - $360</option>
     <option data-p="360">Traditional Cleaning + Preservation - $360</option>
     <option data-p="435">Celebrity Cleaning + Preservation - $435</option>
     <option data-p="460">Restoration - $460</option>
@@ -429,7 +428,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
   window.addEventListener('scroll',function(){clearTimeout(mark.t);mark.t=setTimeout(mark,60);},{passive:true});mark();})();
  var Q=[{t:'How old is your wedding dress?',w:'Older gowns often have yellowing and fabric aging that need restoration instead of standard cleaning.',o:[['new','Less than 20 years old','Stored or worn within the last 20 years.','gown'],['old','20 years or older','More than 20 years old, an heirloom dress, or a vintage piece passed down through your family.','clock']]},
  {t:'What was the original price of your wedding dress?',w:'The Traditional Kit includes $2,000 of insured value and the Celebrity Kit includes $3,000. The cleaning and preservation process is the same.',o:[['low','Under $2,000','Most wedding dresses fall here. You will receive the Traditional Kit with $2,000 insured value.','tag'],['high','Over $2,000 (couture, silk, designer)','The right fit for high-end designer or couture dresses, with $3,000 insured value.','gem']]},
- {t:'And finally, what do you plan to do with your dress?',w:'Preservation protects your gown for long-term storage. Clean-only returns it ready to wear. You can add preservation to Clean Only for +$100.',o:[['keep','Preserve as a keepsake or pass on to a daughter or family member','Cleaned and sealed in a preservation box with our 100 Year Certificate of Guarantee.','box'],['wear','Cleaned for wearing or selling in the next year','Professional cleaning so the dress is fresh and ready to wear or sell.','gown']]}];
+ {t:'And finally, what do you plan to do with your dress?',w:'Preservation protects your gown for long-term storage. Clean-only returns it ready to wear.',o:[['keep','Preserve as a keepsake or pass on to a daughter or family member','Cleaned and sealed in a preservation box with our 100 Year Certificate of Guarantee.','box'],['wear','Cleaned for wearing or selling in the next year','Professional cleaning so the dress is fresh and ready to wear or sell.','gown']]}];
  var hs=0,ha=[],hsel='Traditional',hb=document.getElementById('hbody'),hqe=document.getElementById('hq'),hre=document.getElementById('hres');
  function hstep(){var q=Q[hs];hqe.hidden=false;hre.hidden=true;document.getElementById('hstep').textContent='Step '+(hs+1)+' of 3';document.getElementById('hfill').style.width=((hs+1)/3*100)+'%';
   document.getElementById('hqt').textContent=q.t;document.getElementById('hwhy').textContent=q.w;document.getElementById('hback').style.visibility=hs?'visible':'hidden';
