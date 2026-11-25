@@ -137,6 +137,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
 @media(min-width:760px){.snavt{display:none}.snavl{display:flex;gap:.3rem;flex:1}}
 dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min(640px,calc(100% - 1.5rem));max-height:calc(100vh - 2rem);overflow:auto;box-shadow:0 20px 60px rgba(10,26,122,.35);color:var(--text)}dialog#trkdlg::backdrop{background:rgba(10,26,122,.55)}#trkdlg .dh{font-family:var(--serif);color:var(--ink);font-size:1.4rem;margin:0 2rem .8rem 0}#trkdlg .card{margin:0;box-shadow:none}.dclose{position:absolute;top:.5rem;right:.7rem;background:none;border:0;font-size:2rem;line-height:1;color:var(--ink);cursor:pointer;min-width:44px;min-height:44px}
 dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem);overflow:auto;box-shadow:0 20px 60px rgba(10,26,122,.35);color:var(--text);margin:auto}dialog#done::backdrop{background:rgba(10,26,122,.55)}dialog#done h3{margin-right:2rem}
+.snav a.snavs{margin-left:auto;border:2px solid var(--ink);color:var(--ink);background:#fff;padding:.4rem .9rem}.snav a.snavs:hover{background:var(--steam)}.snav a.snavo{margin-left:.3rem}@media(max-width:759px){.snav a.snavs{margin-left:auto;padding:.4rem .7rem;font-size:.88rem;min-height:44px}.snav a.snavo{margin-left:0;padding:.5rem .8rem;font-size:.9rem}.snavt{max-width:34%}.snavt #snavcur{display:none}.snavt:after{content:'Menu';font-weight:700}.snavin{gap:.35rem}}
 .snav a:hover{background:var(--steam)}.snav a.on{background:var(--ink);color:#fff}.snav a.snavo{background:#2f7d3b;color:#fff;margin-left:auto}.snav a.snavo:hover{background:#25652f}
 #packages,#why,#how,#inkit,#track,#gallery,#faq,#request{scroll-margin-top:64px}
 .vlinks{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}.vlinks a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1rem;border:2px solid var(--ink);border-radius:999px;color:var(--ink);font-weight:700;text-decoration:none;background:#fff}.vlinks a:hover{background:var(--steam)}
@@ -164,7 +165,8 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
 </header>
 <nav class="snav" aria-label="Page sections"><div class="snavin">
  <button type="button" class="snavt" id="snavt" aria-expanded="false" aria-controls="snavl"><span class="bars" aria-hidden="true"></span><span id="snavcur">Menu</span></button>
- <div class="snavl" id="snavl"><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#packages">Kits</a><a href="#faq">FAQ</a><a href="#track">Track your gown</a></div>
+ <div class="snavl" id="snavl"><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#packages">Kits</a><a href="#faq">FAQ</a></div>
+ <a href="#track" class="snavs">Gown status</a>
  <a href="#request" class="snavo">Order kit</a>
 </div></nav>
 <main>
@@ -437,7 +439,7 @@ dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem)
  Clean:{i:2,n:'Clean-Only Kit',img:'kit-front.jpg',price:'260',perf:'Perfect for: Gowns you want cleaned and returned ready to wear.',f:['Professional gown cleaning','Ready in 2\u20133 weeks','Prepaid shipping included'],badge:'Wear it again',t:'Since you plan to wear or use the gown again soon, the Clean-Only Kit cleans it and returns it ready to wear.'},
  Restoration:{i:3,n:'Restoration Kit',img:'preserved-gown.jpg',price:'460',perf:'Perfect for: Gowns 20 years or older, or with yellowing.',f:['Cleaning, restoration and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'For older gowns',t:'Gowns 20 years or older need restoration to treat yellowing and aging, so the Restoration Kit is the right choice.'},
  Child:{i:4,n:'Flower Girl / Christening Kit',img:'christening-box.jpg',price:'175',perf:'Perfect for: Children\'s gowns.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'Keepsake',t:'The Flower Girl / Christening Kit is made for smaller heirloom gowns.'}};
- (function(){var L=[].slice.call(document.querySelectorAll('.snav a:not(.snavo)')),T=L.map(function(a){return document.querySelector(a.getAttribute('href'));});
+ (function(){var L=[].slice.call(document.querySelectorAll('.snav a:not(.snavo):not(.snavs)')),T=L.map(function(a){return document.querySelector(a.getAttribute('href'));});
   function mark(){var y=window.scrollY+120,k=-1,best=-1e9;T.forEach(function(t,i){var tp=t?t.getBoundingClientRect().top+window.scrollY:1e9;if(tp<=y&&tp>best){best=tp;k=i;}});L.forEach(function(a,i){a.classList.toggle('on',i===k);});
    document.getElementById('snavcur').textContent=L[k]?L[k].textContent:'Menu';}
   window.addEventListener('scroll',function(){clearTimeout(mark.t);mark.t=setTimeout(mark,60);},{passive:true});mark();
