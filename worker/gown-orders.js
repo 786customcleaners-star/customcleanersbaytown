@@ -104,7 +104,8 @@ export default {
     if (!HANDOFF.includes(d.handoff)) return json(req, { error: 'handoff' }, 400);
     let order;
     try { order = buildOrder(d); } catch (e) { return json(req, { error: e.message }, 400); }
-    const orderNumber = 'G' + Date.now().toString(36).toUpperCase().slice(-6);
+    let orderNumber = 'G' + Date.now().toString(36).toUpperCase().slice(-6); // fallback if the counter is unavailable
+    try { const n = parseInt((await env.ORDERS.get('seq')) || '1000', 10) + 1; await env.ORDERS.put('seq', String(n)); orderNumber = 'CC-' + n; } catch (e) {}
     const fmt = (tz) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
     const nice = (iso) => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' });
     const orderDate = fmt('America/Chicago'), dueDate = fmt('America/New_York');
