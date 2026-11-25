@@ -126,6 +126,12 @@ body{overflow-x:hidden}.band{position:relative;padding:.4rem 0 1.6rem;margin:2.2
 .gal figure,.vids figure{margin:0}.gal img{display:block;box-shadow:0 6px 16px rgba(10,26,122,.1)}figcaption{font-size:.92rem;color:#44507a;text-align:center;margin:.5rem 0 0;font-weight:600}.vid{box-shadow:0 6px 16px rgba(10,26,122,.15)}
 details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26,122,.1);border-color:var(--ink2)}details summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}details summary::-webkit-details-marker{display:none}details summary:after{content:"+";flex:none;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--steam);color:var(--ink);font-weight:700;display:flex;align-items:center;justify-content:center;transition:transform .2s}details[open] summary:after{content:"\2212";background:var(--tag)}details[open] p{animation:fq .25s ease}@keyframes fq{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 @media(max-width:700px){.why{grid-template-columns:1fr;padding:1.3rem}}@media(prefers-reduced-motion:reduce){details[open] p{animation:none}}
+html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.snav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(10,26,122,.08)}
+.snavin{width:min(900px,calc(100% - 1rem));margin:0 auto;display:flex;gap:.3rem;overflow-x:auto;scrollbar-width:none;padding:.4rem 0}.snavin::-webkit-scrollbar{display:none}
+.snav a{flex:none;text-decoration:none;color:var(--ink);font-weight:600;font-size:.93rem;padding:.5rem .85rem;border-radius:999px;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
+.snav a:hover{background:var(--steam)}.snav a.on{background:var(--ink);color:#fff}.snav a.snavo{background:#2f7d3b;color:#fff;margin-left:auto}.snav a.snavo:hover{background:#25652f}
+#packages,#why,#how,#inkit,#track,#gallery,#faq,#request{scroll-margin-top:64px}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -139,6 +145,9 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
   <a class="home" href="/">Home</a>
  </div>
 </header>
+<nav class="snav" aria-label="Page sections"><div class="snavin">
+ <a href="#packages">Kits</a><a href="#why">Why preserve</a><a href="#how">How it works</a><a href="#inkit">In your kit</a><a href="#track">Track your gown</a><a href="#gallery">Photos &amp; videos</a><a href="#faq">Questions</a><a href="#request" class="snavo">Order</a>
+</div></nav>
 <main>
  <section class="hero2">
   <div class="hcol">
@@ -250,7 +259,7 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
   <ul class="stains" aria-label="Hidden stains that can yellow a gown"><li>Perfume</li><li>Deodorant</li><li>Makeup</li><li>Food and drink</li><li>Dance-floor dirt</li></ul>
  </section>
 
- <div class="band">
+ <div class="band" id="how">
  <h2 class="s">How it works</h2>
  <ol class="steps">
   <li><b>Order your kit</b>Pick a package and pay securely online.</li>
@@ -260,7 +269,7 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
  </ol>
  </div>
 
- <h2 class="s">What is in your kit</h2>
+ <h2 class="s" id="inkit">What is in your kit</h2>
  <div class="two">
   <div class="kimg"><img class="nb" src="/img/kit-back.jpg" alt="Back of the kit showing the order form, stain stickers, gown bag, shipping label and instructions" loading="lazy" width="520" height="650"></div>
   <div>
@@ -309,7 +318,7 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
  });
 })();
 </script>
-  <h2 class="s">Preserved gowns</h2>
+  <h2 class="s" id="gallery">Preserved gowns</h2>
   <div class="gal">
    <figure><img src="/img/preserved-gowns.jpg" alt="Several preserved gowns in Wedding Gown Preservation Co. boxes" loading="lazy" width="360" height="480"><figcaption>Preserved gowns in their boxes</figcaption></figure>
    <figure><img src="/img/preserved-gown.jpg" alt="A preserved gown beside its box" loading="lazy" width="360" height="480"><figcaption>A preserved gown beside its box</figcaption></figure>
@@ -322,7 +331,7 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
    <figure><div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/mdEotsrmi8U" title="Preservation process video" loading="lazy" allowfullscreen></iframe></div><figcaption>See the process</figcaption></figure>
   </div>
 
- <div class="band">
+ <div class="band" id="faq">
  <h2 class="s">Questions</h2>
  <details><summary>Will every stain come out?</summary><p>Not always. Some stains cannot be removed completely without damaging the fabric. We note the condition of your gown when you bring it in.</p></details>
  <details><summary>Can beads and sequins be affected?</summary><p>Appliques, beads and decorative items may come off, and some lace, embroidery, beads and sequins can lose color or yellow over time, even with proper care.</p></details>
@@ -415,6 +424,10 @@ details{transition:box-shadow .2s}details[open]{box-shadow:0 4px 14px rgba(10,26
  Clean:{i:2,n:'Clean-Only Kit',img:'kit-front.jpg',price:'260',perf:'Perfect for: Gowns you want cleaned and returned ready to wear. Add preservation for +$100.',f:['Professional gown cleaning','Ready in 2\u20133 weeks','Prepaid shipping included'],badge:'Wear it again',t:'Since you plan to wear or use the gown again soon, the Clean-Only Kit cleans it and returns it ready to wear.'},
  Restoration:{i:3,n:'Restoration Kit',img:'preserved-gown.jpg',price:'460',perf:'Perfect for: Gowns 20 years or older, or with yellowing.',f:['Cleaning, restoration and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'For older gowns',t:'Gowns 20 years or older need restoration to treat yellowing and aging, so the Restoration Kit is the right choice.'},
  Child:{i:4,n:'Flower Girl / Christening Kit',img:'christening-box.jpg',price:'175',perf:'Perfect for: Children\'s gowns.',f:['Cleaning and preservation','$2,000 insured value included','100 Year Certificate of Guarantee'],badge:'Keepsake',t:'The Flower Girl / Christening Kit is made for smaller heirloom gowns.'}};
+ (function(){var L=[].slice.call(document.querySelectorAll('.snav a:not(.snavo)')),T=L.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function mark(){var y=window.scrollY+120,k=-1;T.forEach(function(t,i){if(t&&t.getBoundingClientRect().top+window.scrollY<=y)k=i;});L.forEach(function(a,i){a.classList.toggle('on',i===k);});
+   var on=L[k];if(on){var c=on.parentNode;c.scrollTo({left:on.offsetLeft-c.clientWidth/2+on.clientWidth/2,behavior:'smooth'});}}
+  window.addEventListener('scroll',function(){clearTimeout(mark.t);mark.t=setTimeout(mark,60);},{passive:true});mark();})();
  var Q=[{t:'How old is your wedding dress?',w:'Older gowns often have yellowing and fabric aging that need restoration instead of standard cleaning.',o:[['new','Less than 20 years old','Stored or worn within the last 20 years.','gown'],['old','20 years or older','More than 20 years old, an heirloom dress, or a vintage piece passed down through your family.','clock']]},
  {t:'What was the original price of your wedding dress?',w:'The Traditional Kit includes $2,000 of insured value and the Celebrity Kit includes $3,000. The cleaning and preservation process is the same.',o:[['low','Under $2,000','Most wedding dresses fall here. You will receive the Traditional Kit with $2,000 insured value.','tag'],['high','Over $2,000 (couture, silk, designer)','The right fit for high-end designer or couture dresses, with $3,000 insured value.','gem']]},
  {t:'And finally, what do you plan to do with your dress?',w:'Preservation protects your gown for long-term storage. Clean-only returns it ready to wear. You can add preservation to Clean Only for +$100.',o:[['keep','Preserve as a keepsake or pass on to a daughter or family member','Cleaned and sealed in a preservation box with our 100 Year Certificate of Guarantee.','box'],['wear','Cleaned for wearing or selling in the next year','Professional cleaning so the dress is fresh and ready to wear or sell.','gown']]}];
