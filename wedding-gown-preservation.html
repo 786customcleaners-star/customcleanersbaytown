@@ -46,7 +46,7 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--tag);border-colo
 .hp{display:none}
 textarea{min-height:110px;resize:vertical}.req{color:#b3121c}.intro{font-size:1.1rem;margin:0 0 1.5rem}
 button.go{background:var(--ink);color:#fff;border:0;border-radius:10px;font:inherit;font-weight:700;font-size:1.05rem;padding:.85rem 2rem;min-height:48px;cursor:pointer}
-button.go:hover{background:var(--ink2)}button.go[disabled]{opacity:.6;cursor:wait}
+button.go:hover{background:var(--ink2)}button.go[disabled]{background:#9ca3af;color:#fff;opacity:1;cursor:not-allowed}
 button.go.loading::after{content:'';display:inline-block;width:1em;height:1em;margin-left:.6em;vertical-align:-.15em;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:gspin .8s linear infinite}
 @keyframes gspin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){button.go.loading::after{animation-duration:2.5s}}
@@ -454,7 +454,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
   if(!f.checkValidity()){f.reportValidity();return;}
   var d={},fd=new FormData(f);fd.forEach(function(v,k){d[k]=(k in d)?d[k]+', '+v:v;});
   var t=total();
-  b.disabled=true;b.classList.add('loading');m.className='';m.textContent='Creating your invoice, Please wait. Don\'t click the back button.';
+  b.disabled=true;b.classList.add('loading');b.textContent='Creating invoice';m.className='';m.textContent='Please wait ! Don\'t click back button.';
   var addons=[];f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){addons.push(c.value.replace(/ \(\+\$50\)$/,''));});
   var order={first:d['First Name'],last:d['Last Name'],email:d['Email'],phone:d['Phone'],handoff:d['Gown Handoff'],package:d['Package'],declared:d['Declared Value'],addons:addons,notes:d['Notes']||'',street:d['Street Address']||'',street2:d['Street Address Line 2']||'',city:d['City']||'',state:d['State']||'',zip:d['Zip']||'',website:d['_honey']||''};
   fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
@@ -478,7 +478,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
     }else{throw new Error('fail');}
    });
   })
-  .catch(function(){m.className='bad';m.textContent='Sorry, something went wrong. Please call us at (832) 323-3745 or (281) 783-6669.';b.disabled=false;b.classList.remove('loading');});
+  .catch(function(){m.className='bad';m.textContent='Sorry, something went wrong. Please call us at (832) 323-3745 or (281) 783-6669.';b.disabled=false;b.classList.remove('loading');b.textContent='Place Order';});
  });
 })();
 </script>
