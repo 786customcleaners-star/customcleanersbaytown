@@ -472,7 +472,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
     if(j&&(j.success===true||j.success==='true')){
      document.getElementById('on').textContent=n;document.getElementById('dt').textContent='$'+t;
      var pb=document.getElementById('paybtn'),pm=document.getElementById('paymsg');
-     if(link){pb.href=link;pb.removeAttribute('target');pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you.';}
+     if(link){pb.href=link;pb.removeAttribute('target');pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you. Taking you to the payment page now&hellip; <br>(If nothing happens, press the button below.)';setTimeout(function(){location.href=link;},3000);}
      f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
     }else{throw new Error('fail');}
    });
