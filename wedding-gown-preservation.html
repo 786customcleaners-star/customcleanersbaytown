@@ -485,7 +485,6 @@ button.go.done-btn,button.go.done-btn:hover{background:#0a7a3a;color:#fff}button
   fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order)})
   .then(function(r){return r.ok?r.json().catch(function(){return null;}):null;},function(){return null;})
   .then(function(w){
-   b.classList.remove('loading');if(w&&w.ok)b.textContent='Invoice created';
    var n=(w&&w.ok&&w.orderNumber)||('G'+Date.now().toString(36).toUpperCase().slice(-6));
    var link=(w&&w.ok&&w.paymentUrl)||'';
    d['Gown Handoff']=(d['Gown Handoff']||'').indexOf('Option 1')===0?'Mail in Kit':'Store Drop-off Kit';
@@ -508,8 +507,8 @@ button.go.done-btn,button.go.done-btn:hover{background:#0a7a3a;color:#fff}button
       f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){var v=+c.getAttribute('data-p');rows.push([c.value.replace(/ \(\+\$\d+\)$/,''),v]);tx+=v;});
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
       inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;}
-     b.classList.remove('loading');var x=document.getElementById('done');
-     m.textContent='';b.type='button';b.disabled=false;b.classList.remove('loading');b.classList.add('done-btn');b.textContent='Invoice created';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});
+     var x=document.getElementById('done');
+     setTimeout(function(){m.textContent='';b.type='button';b.disabled=false;b.classList.remove('loading');b.classList.add('done-btn');b.textContent='Invoice created';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});},10000);
      document.getElementById('closedone').addEventListener('click',function(){x.close();});
      if(x.showModal)x.showModal();else x.setAttribute('open','');
     }else{throw new Error('fail');}
