@@ -136,6 +136,7 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
 @media(max-width:759px){.snavin{position:relative;overflow:visible;justify-content:space-between;align-items:center;gap:.5rem;padding:.35rem 0}.snavt{display:inline-flex;align-items:center;gap:.6rem;background:var(--steam);color:var(--ink);border:0;border-radius:999px;font:inherit;font-weight:700;font-size:.98rem;padding:.5rem 1rem;min-height:44px;cursor:pointer;max-width:62%}.snavt #snavcur{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bars,.bars:before,.bars:after{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .2s}.bars:before,.bars:after{content:'';position:absolute;left:0}.bars:before{top:-6px}.bars:after{top:6px}.snavt[aria-expanded=true] .bars{background:transparent}.snavt[aria-expanded=true] .bars:before{top:0;transform:rotate(45deg)}.snavt[aria-expanded=true] .bars:after{top:0;transform:rotate(-45deg)}.snavl{display:none;position:absolute;left:0;right:0;top:100%;margin-top:.35rem;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 24px rgba(10,26,122,.18);padding:.4rem;flex-direction:column;gap:.1rem}.snavl.open{display:flex}.snavl a{font-size:1.05rem;min-height:48px;border-radius:10px;padding:.6rem 1rem}.snav a.snavo{margin-left:0;min-height:44px;padding:.5rem 1.1rem}}
 @media(min-width:760px){.snavt{display:none}.snavl{display:flex;gap:.3rem;flex:1}}
 dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min(640px,calc(100% - 1.5rem));max-height:calc(100vh - 2rem);overflow:auto;box-shadow:0 20px 60px rgba(10,26,122,.35);color:var(--text)}dialog#trkdlg::backdrop{background:rgba(10,26,122,.55)}#trkdlg .dh{font-family:var(--serif);color:var(--ink);font-size:1.4rem;margin:0 2rem .8rem 0}#trkdlg .card{margin:0;box-shadow:none}.dclose{position:absolute;top:.5rem;right:.7rem;background:none;border:0;font-size:2rem;line-height:1;color:var(--ink);cursor:pointer;min-width:44px;min-height:44px}
+dialog#done{width:min(560px,calc(100% - 1.2rem));max-height:calc(100vh - 1.5rem);overflow:auto;box-shadow:0 20px 60px rgba(10,26,122,.35);color:var(--text);margin:auto}dialog#done::backdrop{background:rgba(10,26,122,.55)}dialog#done h3{margin-right:2rem}
 .snav a:hover{background:var(--steam)}.snav a.on{background:var(--ink);color:#fff}.snav a.snavo{background:#2f7d3b;color:#fff;margin-left:auto}.snav a.snavo:hover{background:#25652f}
 #packages,#why,#how,#inkit,#track,#gallery,#faq,#request{scroll-margin-top:64px}
 .vlinks{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}.vlinks a{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1rem;border:2px solid var(--ink);border-radius:999px;color:var(--ink);font-weight:700;text-decoration:none;background:#fff}.vlinks a:hover{background:var(--steam)}
@@ -371,7 +372,8 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
   <button class="go" type="submit">Place Order</button>
   <p id="msg" role="status" aria-live="polite"></p>
  </form>
- <section id="done" class="done" hidden tabindex="-1">
+ <dialog id="done" class="done" aria-label="Your invoice">
+  <button type="button" class="dclose" id="closedone" aria-label="Close">&times;</button>
   <h3>Order received. One more step: pay</h3>
   <p>Order number <b id="on"></b></p>
   <p class="credit"><b>Your $25 in-store cleaning credit:</b> mention your order number at Custom Cleaners to use it on your regular cleaning.</p>
@@ -379,7 +381,7 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
   <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
- </section>
+ </dialog>
  <div class="band trkband">
  <h2 class="s" id="track">Check your gown status</h2>
  <p class="trkl" style="text-align:center;margin:0 auto 1rem">Have you sent your gown to us? See where it is in the process.</p>
@@ -501,7 +503,10 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
       f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){var v=+c.getAttribute('data-p');rows.push([c.value.replace(/ \(\+\$\d+\)$/,''),v]);tx+=v;});
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
       inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;}
-     b.classList.remove('loading');f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
+     b.classList.remove('loading');var x=document.getElementById('done');
+     m.textContent='';b.type='button';b.disabled=false;b.textContent='View invoice & pay';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});
+     document.getElementById('closedone').addEventListener('click',function(){x.close();});
+     if(x.showModal)x.showModal();else x.setAttribute('open','');
     }else{throw new Error('fail');}
    });
   })
