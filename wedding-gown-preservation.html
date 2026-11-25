@@ -415,7 +415,7 @@ dialog#trkdlg{border:0;border-radius:16px;padding:1.4rem 1.2rem 1.2rem;width:min
   var b=f.querySelector('button');b.disabled=true;msg('Checking your gown status...');
   fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({serial:v})})
   .then(function(r){return r.ok?r.json():Promise.reject();})
-  .then(function(j){o.innerHTML='';o.appendChild(clean(j.html));})
+  .then(function(j){o.innerHTML='';o.appendChild(clean(j.html));o.querySelectorAll('strong,b,p').forEach(function(n){if(/not yet showing in our system/i.test(n.textContent)&&n.children.length===0||(n.tagName==='STRONG'&&/not yet showing in our system/i.test(n.textContent))){n.style.color='#c62828';}});})
   .catch(function(){o.hidden=false;o.innerHTML='';var p=document.createElement('p');p.appendChild(document.createTextNode('We could not check the status right now. '));var a=document.createElement('a');a.href='https://www.gownpreservation.com/gown-status-2/';a.target='_blank';a.rel='noopener';a.textContent='Open GownTracker in a new tab';p.appendChild(a);o.appendChild(p);})
   .then(function(){b.disabled=false;});
  });
