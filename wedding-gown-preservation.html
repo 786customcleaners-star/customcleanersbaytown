@@ -508,7 +508,10 @@ button.go.done-btn,button.go.done-btn:hover{background:#0a7a3a;color:#fff}button
       var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
       inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;}
      var x=document.getElementById('done');
-     setTimeout(function(){m.textContent='';b.type='button';b.disabled=false;b.classList.remove('loading');b.classList.add('done-btn');b.textContent='Invoice created';b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});},10000);
+     var fin=function(t){m.textContent='';b.type='button';b.disabled=false;b.classList.remove('loading');b.classList.add('done-btn');b.textContent=t;};
+     var wired=false,wire=function(){if(wired)return;wired=true;b.addEventListener('click',function(){if(x.showModal&&!x.open)x.showModal();});};
+     setTimeout(function(){if(x.open){fin('Invoice created');wire();}},10000);
+     x.addEventListener('close',function(){fin('Finish Payment');wire();});
      document.getElementById('closedone').addEventListener('click',function(){x.close();});
      if(x.showModal)x.showModal();else x.setAttribute('open','');
     }else{throw new Error('fail');}
