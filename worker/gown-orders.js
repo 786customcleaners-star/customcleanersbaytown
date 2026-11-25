@@ -112,15 +112,7 @@ export default {
     const phoneFmt = digits.length === 10 ? '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6) : phone;
     const stZip = [clean(d.state, 30), clean(d.zip, 12)].filter(Boolean).join(' ');
     const address = [clean(d.street, 80), clean(d.street2, 40), clean(d.city, 40), stZip].filter(Boolean).join(', ') || 'Not provided';
-    const notes = clean(d.notes, 150);
-    const lines = ['Order date: ' + nice(orderDate), 'Order #: ' + orderNumber, 'Due date: ' + nice(dueDate), '',
-      'Customer: ' + first + ' ' + last, 'Phone: ' + phoneFmt, 'Email: ' + email, 'Address: ' + address, '',
-      'Gown handoff: ' + (d.handoff === HANDOFF[0] ? 'Option 1 - mail kit to customer; customer ships gown' : 'Option 2 - customer drops off gown; we pack and ship')];
-    if (notes) lines.push('Notes: ' + notes);
-    const thanks = ['', 'Thank you for choosing Custom Cleaners. Questions? Call (832) 323-3745.'];
-    let memo = lines.join('\n');
-    if ((memo + '\n' + thanks.join('\n')).length <= 500) memo = memo + '\n' + thanks.join('\n');
-    memo = memo.slice(0, 500);
+    const memo = 'Order #: ' + orderNumber + '\n' + (d.handoff === HANDOFF[0] ? 'Option 1 - mail kit to customer' : 'Option 2 - customer drops off gown at our store');
     try {
       const token = await getToken(env);
       const body = { customer: { email, name: first + ' ' + last }, lineItems: order.items, taxRate: TAX_RATE, memo };
