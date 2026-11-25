@@ -112,7 +112,7 @@ export default {
     const phoneFmt = digits.length === 10 ? '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6) : phone;
     const stZip = [clean(d.state, 30), clean(d.zip, 12)].filter(Boolean).join(' ');
     const address = [clean(d.street, 80), clean(d.street2, 40), clean(d.city, 40), stZip].filter(Boolean).join(', ') || 'Not provided';
-    const memo = 'Order #: ' + orderNumber + '\n' + (d.handoff === HANDOFF[0] ? 'Option 1 - mail kit to customer' : 'Option 2 - Drop gown to store');
+    const memo = (d.handoff === HANDOFF[0] ? 'Option 1 - mail kit to customer' : 'Option 2 - Drop gown to store');
     try {
       const token = await getToken(env);
       const body = { customer: { email, name: first + ' ' + last }, lineItems: order.items, taxRate: TAX_RATE, memo };
@@ -120,14 +120,15 @@ export default {
       try { inv = await api(env, token, 'POST', '/invoices', Object.assign({ dueAt: dueDate + 'T00:00:00Z' }, body)); }
       catch (e) { inv = await api(env, token, 'POST', '/invoices', body); }
       await api(env, token, 'POST', '/invoices/' + inv.id + '/send', {});
-      let paymentUrl = null, total = null;
+      let paymentUrl = null, total = null, num = null;
       for (let i = 0; i < 8 && !paymentUrl; i++) {
         if (i) await new Promise(r => setTimeout(r, 800));
         const cur = await api(env, token, 'GET', '/invoices/' + inv.id);
         paymentUrl = cur.paymentUrl || null;
         if (cur.total != null) total = cur.total;
+        num = cur.invoiceNumber || cur.number || cur.invoice_number || cur.displayId || num;
       }
-      return json(req, { ok: true, orderNumber, invoiceId: inv.id, paymentUrl, subtotal: order.subtotal, total });
+      return json(req, { ok: true, orderNumber: num ? String(num) : orderNumber, invoiceId: inv.id, paymentUrl, subtotal: order.subtotal, total });
     } catch (e) {
       console.log('order failed', e.message);
       return json(req, { error: 'invoice' }, 502);
