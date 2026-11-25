@@ -61,6 +61,7 @@ h2.s{font-family:var(--serif);color:var(--ink);font-size:1.6rem;margin:2.4rem 0 
 @media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
 .steps li{background:#fff;border:1px solid var(--line);border-top:5px solid var(--tag);border-radius:12px;padding:1rem 1.1rem;counter-increment:s}
 .steps li:before{content:counter(s);display:inline-flex;width:2rem;height:2rem;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:700;margin-bottom:.5rem}
+.inv{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin:.8rem 0}.inv h4{margin:0 0 .5rem;font-size:1rem;color:var(--ink)}.inv .r{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;border-bottom:1px dashed var(--line)}.inv .r:last-child{border-bottom:0}.inv .tt{font-weight:700;font-size:1.1rem;color:var(--ink);border-top:2px solid var(--line);margin-top:.3rem;padding-top:.5rem}.inv .sm{color:#555;font-size:.9rem}
 .steps b{display:block;color:var(--ink)}
 .steps li:before{content:'Step 'counter(s);display:block;width:auto;height:auto;background:none;color:var(--ink2);border-radius:0;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0}.hi{display:inline-flex;width:3rem;height:3rem;align-items:center;justify-content:center;border-radius:50%;background:var(--steam);color:var(--ink);margin-bottom:.2rem}.hi svg{width:1.6rem;height:1.6rem}
 
@@ -403,8 +404,10 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
   <h3>Order received. One more step: pay</h3>
   <p>Order number <b id="on"></b></p>
   <p class="credit"><b>Your $25 in-store cleaning credit:</b> mention your order number at Custom Cleaners to use it on your regular cleaning.</p>
+  <div id="inv" class="inv" hidden></div>
   <p id="paymsg">Your total is <b id="dt"></b>. On the payment page, enter this exact amount and type your order number in the note.</p>
   <p><a class="btn" id="paybtn" href="https://app.autobooks.co/pay/evrest" target="_blank" rel="noopener">Pay securely now</a></p>
+  <p class="note" id="mailed" hidden>We also emailed this invoice to you.</p>
   <p class="note">Once your payment is received, we will mail your kit and instructions (Option 1) or pack and ship your gown after you drop it off (Option 2). Questions? Call (832) 323-3745 or (281) 783-6669.</p>
  </section>
 </main>
@@ -473,7 +476,14 @@ html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-be
     if(j&&(j.success===true||j.success==='true')){
      document.getElementById('on').textContent=n;document.getElementById('dt').textContent='$'+t;
      var pb=document.getElementById('paybtn'),pm=document.getElementById('paymsg');
-     if(link){pb.href=link;pb.removeAttribute('target');pb.textContent='Pay your invoice';pm.innerHTML='Your invoice is ready. Subtotal <b>$'+t+'</b>, plus sales tax if it applies. We also emailed it to you.';}
+     if(link){pb.href=link;pb.removeAttribute('target');pb.textContent='Pay your invoice';pm.hidden=true;}
+     var inv=document.getElementById('inv');
+     if(link){var rows=[],tx=0,money=function(v){return '$'+v.toFixed(2);},pk=document.getElementById('pkg'),dvs=document.getElementById('dv'),pp=+pk.options[pk.selectedIndex].getAttribute('data-p')||0;
+      rows.push([pk.value.replace(/ - \$\d+$/,''),pp]);tx+=pp;
+      if(dvs.selectedIndex>0)rows.push(['Higher declared value ('+dvs.options[dvs.selectedIndex].text.replace(/ \(\+\$\d+\)$/,'')+')',+dvs.options[dvs.selectedIndex].getAttribute('data-p')]);
+      f.querySelectorAll('input[name="Add-ons"]:checked').forEach(function(c){var v=+c.getAttribute('data-p');rows.push([c.value.replace(/ \(\+\$\d+\)$/,''),v]);tx+=v;});
+      var tax=Math.round(tx*0.0825*100)/100,sum=rows.reduce(function(a,r){return a+r[1];},0);
+      inv.innerHTML='<h4>Invoice '+n+'</h4>'+rows.map(function(r){return '<div class="r"><span>'+r[0]+'</span><span>'+money(r[1])+'</span></div>';}).join('')+'<div class="r sm"><span>Sales tax (8.25%)</span><span>'+money(tax)+'</span></div><div class="r tt"><span>Total due</span><span>'+money(sum+tax)+'</span></div>';inv.hidden=false;document.getElementById('mailed').hidden=false;}
      f.hidden=true;var x=document.getElementById('done');x.hidden=false;x.focus();x.scrollIntoView({behavior:'smooth',block:'center'});
     }else{throw new Error('fail');}
    });
