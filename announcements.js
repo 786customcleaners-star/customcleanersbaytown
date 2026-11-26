@@ -22,7 +22,7 @@ var MESSAGES = [
     id: "thanksgiving-2026",
     type: "hours",
     title: "Thanksgiving hours:",
-    text: "Closed Thu. Fri 8am–5pm. Sat 8am–5pm. Clothes received during the holiday weekend will be ready Monday after 5pm.",
+    text: "Closed Thu. Friday and Saturday 8am to 5pm. Clothes received during the holiday weekend will be ready Monday after 5pm.",
     link: "#locations",
     start: "2026-11-24",
     end: "2026-11-28"
