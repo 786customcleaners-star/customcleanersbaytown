@@ -224,6 +224,17 @@ button,.btn,summary,nav a,.callbar a{touch-action:manipulation;-webkit-tap-highl
 @media(max-width:700px){#contactBtn{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .loc .tel,#contact a[href^="tel:"]{display:inline-flex;align-items:center;min-height:44px}
+.announce{font-size:.95rem;line-height:1.45}
+.announce-in{display:flex;align-items:center;gap:.7rem;padding-top:.6rem;padding-bottom:.6rem}
+.announce p{margin:0;flex:1;max-width:none}
+.announce a{color:inherit;font-weight:700;text-decoration:underline;white-space:nowrap}
+.announce .ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.announce-x{flex:none;background:none;border:0;color:inherit;font-size:1.6rem;line-height:1;cursor:pointer;padding:.2rem .4rem;opacity:.8}
+.announce-x:hover{opacity:1}
+.announce-hours{background:var(--steam);color:var(--ink);border-bottom:1px solid var(--line)}
+.announce-deal{background:var(--tag);color:var(--ink)}
+.announce-alert{background:var(--red);color:#fff}
+.announce-gown{background:#fbe8ef;color:#7a1f45;border-bottom:1px solid #f1c6d6}
 </style>
 <script type="application/ld+json">
 {
@@ -1009,5 +1020,6 @@ button,.btn,summary,nav a,.callbar a{touch-action:manipulation;-webkit-tap-highl
 
 })();
 </script>
+<script src="announcements.js" defer></script>
 </body>
 </html>
