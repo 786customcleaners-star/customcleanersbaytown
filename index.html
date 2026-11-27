@@ -154,6 +154,7 @@ textarea{min-height:120px;resize:vertical}
 #msg{grid-column:span 2;font-weight:600;margin:0}
 .warn{font-size:.95rem;color:#5a6b79;grid-column:span 2;margin:0}
 @media(max-width:800px){.contact .wrap{grid-template-columns:1fr}form{grid-template-columns:1fr}.f.full,#msg,.warn{grid-column:auto}}
+.ostat{display:flex;align-items:center;gap:.5rem;margin:.2rem 0 .6rem;font-size:1rem}.ostat .od{width:.7rem;height:.7rem;border-radius:50%;background:#9ca3af;flex:none}.ostat.is-open{color:#0a7a3a}.ostat.is-open .od{background:#0a7a3a}.ostat.is-closed{color:#c62828}.ostat.is-closed .od{background:#c62828}.ostat .os{color:#4b5563}
 footer{background:var(--ink);color:#c8d7e2;padding:2.5rem 0;font-size:.95rem}
 footer a{color:var(--tag)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
@@ -809,6 +810,7 @@ button,.btn,summary,nav a,.callbar a{touch-action:manipulation;-webkit-tap-highl
    <article class="card">
     <h3><svg class="ic lead" aria-hidden="true"><use href="#i-pin"/></svg>Garth Rd</h3>
     <address class="addr">4517 Garth Rd<br>Baytown, TX 77521</address>
+    <p data-open-status class="ostat" aria-live="polite"></p>
     <a class="tel" href="tel:+18323233745"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>(832) 323-3745</a>
     <table><caption class="sr" style="position:absolute;left:-999px">Garth Rd hours</caption>
      <tr><th scope="row"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> Mon – Fri</th><td>6:30am – 7:00pm</td></tr>
@@ -821,6 +823,7 @@ button,.btn,summary,nav a,.callbar a{touch-action:manipulation;-webkit-tap-highl
    <article class="card">
     <h3><svg class="ic lead" aria-hidden="true"><use href="#i-pin"/></svg>Hwy 146</h3>
     <address class="addr">7123 N Highway 146<br>Baytown, TX 77523</address>
+    <p data-open-status class="ostat" aria-live="polite"></p>
     <a class="tel" href="tel:+12817836669"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>(281) 783-6669</a>
     <table><caption class="sr" style="position:absolute;left:-999px">Hwy 146 hours</caption>
      <tr><th scope="row"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> Mon – Fri</th><td>6:30am – 7:00pm</td></tr>
@@ -1023,5 +1026,6 @@ button,.btn,summary,nav a,.callbar a{touch-action:manipulation;-webkit-tap-highl
 })();
 </script>
 <script src="announcements.js" defer></script>
+<script src="/status.js" defer></script>
 </body>
 </html>

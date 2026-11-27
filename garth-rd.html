@@ -34,6 +34,7 @@ table{border-collapse:collapse;margin:.4rem 0 1rem}th,td{text-align:left;padding
 .btn{display:inline-flex;align-items:center;min-height:44px;padding:.6rem 1.2rem;border-radius:10px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;margin:.3rem .5rem .3rem 0}
 .btn:hover{background:var(--ink2)}
 ul.sv{padding-left:1.2rem}ul.sv li{margin:.3rem 0}
+.ostat{display:flex;align-items:center;gap:.5rem;margin:.2rem 0 .6rem;font-size:1rem}.ostat .od{width:.7rem;height:.7rem;border-radius:50%;background:#9ca3af;flex:none}.ostat.is-open{color:#0a7a3a}.ostat.is-open .od{background:#0a7a3a}.ostat.is-closed{color:#c62828}.ostat.is-closed .od{background:#c62828}.ostat .os{color:#4b5563}
 footer{background:var(--ink);color:#c8d7e2;padding:1.6rem 0;font-size:.95rem;text-align:center}
 footer p{margin:0}
 @media(max-width:600px){main{padding:2rem 0 3rem}.card{padding:1.1rem 1.1rem 1.1rem 2.2rem}}
@@ -56,6 +57,7 @@ footer p{margin:0}
  <p class="lead">Family owned dry cleaner and laundry in Baytown, Texas since 1996</p>
  <div class="card">
   <address style="font-style:normal"><strong>4517 Garth Rd<br>Baytown, TX 77521</strong></address>
+  <p data-open-status class="ostat" aria-live="polite"></p>
   <a class="tel" href="tel:+18323233745">(832) 323-3745</a>
   <table><caption style="position:absolute;left:-999px">Store hours</caption>
    <tr><th scope="row">Mon &ndash; Fri</th><td>6:30am &ndash; 7:00pm</td></tr>
@@ -82,5 +84,6 @@ footer p{margin:0}
  <p><a href="/hwy-146.html">Custom Cleaners, Hwy 146</a> &middot; 7123 N Highway 146, Baytown, TX 77523 &middot; (281) 783-6669</p>
 </main>
 <footer><div class="bar" style="justify-content:center"><p>Copyright 2026 by Evrest, Inc &middot; <a href="/privacy-policy.html" style="color:#c8d7e2">Privacy Policy</a> &middot; <a href="/terms-and-conditions.html" style="color:#c8d7e2">Terms</a></p></div></footer>
+<script src="/status.js" defer></script>
 </body>
 </html>
