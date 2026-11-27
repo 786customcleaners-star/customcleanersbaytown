@@ -10,7 +10,16 @@
     p.forEach(function(x){o[x.type]=x.value;});
     return {date:o.year+'-'+o.month+'-'+o.day,dow:DAYS.indexOf(o.weekday),min:(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10)};
   }
-  function hoursFor(date,dow){return OVERRIDES.hasOwnProperty(date)?OVERRIDES[date]:HOURS[dow];}
+  /* Yearly closures: Jan 1, Memorial Day (last Mon of May), Jul 4, Labor Day (first Mon of Sep), Dec 25. */
+  function isHoliday(date){
+    var y=+date.slice(0,4),mo=+date.slice(5,7),d=+date.slice(8,10);
+    if((mo===1&&d===1)||(mo===7&&d===4)||(mo===12&&d===25))return true;
+    var dow=new Date(Date.UTC(y,mo-1,d)).getUTCDay();
+    if(mo===5&&dow===1&&d+7>31)return true;
+    if(mo===9&&dow===1&&d<=7)return true;
+    return false;
+  }
+  function hoursFor(date,dow){return OVERRIDES.hasOwnProperty(date)?OVERRIDES[date]:(isHoliday(date)?null:HOURS[dow]);}
   function ymd(add,n){var d=new Date(Date.UTC(+n.date.slice(0,4),+n.date.slice(5,7)-1,+n.date.slice(8,10)+add));return d.toISOString().slice(0,10);}
   function status(){
     var n=now(),h=hoursFor(n.date,n.dow);
